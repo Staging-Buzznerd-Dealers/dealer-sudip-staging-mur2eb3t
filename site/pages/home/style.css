@@ -1,0 +1,7 @@
+.hero{padding:var(--space-7) 0 var(--space-6)}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:var(--text-eyebrow);font-weight:700;color:var(--accent);margin:0 0 var(--space-3)}
+.hero h1{letter-spacing:-.02em}
+.hero .lede{font-size:var(--text-h3);color:var(--muted);max-width:60ch}
+.hero-actions{display:flex;gap:var(--space-3);margin-top:var(--space-6);flex-wrap:wrap}
+.btn-ghost{color:var(--ink);background:transparent;border-color:var(--line)}
+.btn-ghost:hover{background:var(--card)}

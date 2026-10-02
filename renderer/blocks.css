@@ -1,0 +1,756 @@
+/* Public components + block layout. Styled entirely through the token custom
+   properties compileTokens() emits: no hardcoded brand color, no off-scale
+   spacing. Editing a token restyles every block at once, which is the whole
+   point of the design system screen.
+
+   Authored once, shipped to every dealer. Page CSS may add to it; nothing here
+   is per-dealer. */
+
+/* ------------------------------------------------------------------ layout */
+
+.bz-container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--container-pad, var(--space-4));
+  box-sizing: border-box;
+}
+@media (max-width: 1100px) {
+  .bz-container { padding-inline: var(--container-pad-tablet, var(--container-pad, var(--space-4))); }
+}
+@media (max-width: 640px) {
+  .bz-container { padding-inline: var(--container-pad-mobile, var(--container-pad, var(--space-4))); }
+}
+
+.bz-container--wide { max-width: min(1600px, 96vw); }
+
+/* --------------------------------------------------------- layout nodes ---
+   Section, row and column are the structure the editor manipulates directly.
+   Everything here is driven by custom properties the renderer sets per node, so
+   the same stylesheet serves every arrangement without a class per variant. */
+
+.bz-section {
+  padding-block: var(--bz-pad, var(--space-7));
+  position: relative;
+}
+.bz-section--bg-paper { background: var(--paper); }
+.bz-section--bg-card { background: var(--card); }
+.bz-section--bg-ink { background: var(--ink); color: #fff; }
+.bz-section--bg-accent { background: var(--accent); color: var(--ink-dark); }
+.bz-section--bg-ink :is(h1, h2, h3, h4, h5, h6) { color: #fff; }
+.bz-section--h-half { min-height: 50vh; display: flex; flex-direction: column; }
+.bz-section--h-full { min-height: 100vh; display: flex; flex-direction: column; }
+.bz-section--v-center { justify-content: center; }
+.bz-section--v-end { justify-content: flex-end; }
+.bz-section--h-half > *, .bz-section--h-full > * { width: 100%; }
+
+/* A twelve-column grid. `--bz-span` on each column is the only thing that
+   changes between a half/half and a two-thirds/third row, which is what lets a
+   column be resized by dragging without touching its markup. */
+.bz-row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--bz-gap, var(--space-6));
+  align-items: stretch;
+}
+.bz-row--v-start { align-items: start; }
+.bz-row--v-center { align-items: center; }
+.bz-row--v-end { align-items: end; }
+
+.bz-col {
+  grid-column: span var(--bz-span, 12) / span var(--bz-span, 12);
+  min-width: 0;
+  padding: var(--bz-col-pad, 0);
+  box-sizing: border-box;
+}
+.bz-col--v-start { align-self: start; }
+.bz-col--v-center { align-self: center; }
+.bz-col--v-end { align-self: end; }
+.bz-col--bg-paper { background: var(--paper); }
+.bz-col--bg-card { background: var(--card); }
+.bz-col--bg-ink { background: var(--ink); color: #fff; }
+.bz-col--bg-accent { background: var(--accent); color: var(--ink-dark); }
+
+/* Columns stack rather than shrink. Which width they stack at is a per-row
+   choice, because a two-column hero and a four-column feature grid do not want
+   the same answer. */
+@media (max-width: 640px) {
+  .bz-row--stack-tablet > .bz-col,
+  .bz-row--stack-mobile > .bz-col { grid-column: 1 / -1; }
+  .bz-row--stack-tablet.bz-row--rev,
+  .bz-row--stack-mobile.bz-row--rev { display: flex; flex-direction: column-reverse; }
+}
+@media (min-width: 641px) and (max-width: 1100px) {
+  .bz-row--stack-tablet > .bz-col { grid-column: 1 / -1; }
+  .bz-row--stack-tablet.bz-row--rev { display: flex; flex-direction: column-reverse; }
+}
+
+/* The content area. Only ever visible in the editor — the published page has the
+   page's own nodes here instead. */
+.bz-contentarea {
+  min-height: 160px;
+  border: 2px dashed var(--accent);
+  border-radius: var(--radius-card);
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+.bz-contentarea__label {
+  font: 700 var(--text-small) / 1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+}
+
+/* A shared section carries no styling of its own — it expands to real nodes and
+   must look identical to the same tree placed directly, or "reuse this" would
+   change the design. Only the two editor states below draw anything. */
+[data-bz-opaque] { position: relative; }
+[data-bz-opaque]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  outline: 1px dashed color-mix(in srgb, var(--accent) 50%, transparent);
+  outline-offset: -1px;
+  pointer-events: none;
+}
+.bz-sharedsection--missing {
+  min-height: 120px;
+  border: 2px dashed var(--warn, #b45309);
+  border-radius: var(--radius-card);
+  display: grid;
+  place-items: center;
+}
+.bz-sharedsection__label {
+  font: 700 var(--text-small) / 1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--warn, #b45309);
+}
+
+/* Widgets sit closer together than sections do; a heading followed by a
+   paragraph should not read as two separate bands. */
+.bz-block { padding-block: var(--space-4); }
+.bz-block--spacer, .bz-block--divider { padding-block: 0; }
+.bz-block + .bz-block { padding-block-start: 0; }
+
+/* A widget inside a section or a column is already inside a container — it must
+   not open a second one, or the copy indents once per nesting level. */
+.bz-col .bz-container,
+.bz-section .bz-container { max-width: none; padding-inline: 0; }
+.bz-section > .bz-container { max-width: var(--container); padding-inline: var(--space-4); }
+.bz-section > .bz-container.bz-container--wide { max-width: min(1600px, 96vw); }
+
+/* Half-bleed: one side stays on the page grid, the other runs to the screen
+   edge — the split-section pattern (copy on the grid, photo bleeding). The
+   grid-side padding is the distance from the screen edge to where the boxed
+   container would start, so text lines up with every boxed section above it. */
+.bz-section > .bz-container.bz-container--bleed-left,
+.bz-section > .bz-container.bz-container--bleed-right { max-width: none; }
+.bz-section > .bz-container.bz-container--bleed-left {
+  padding-left: 0;
+  padding-right: max(var(--container-pad, var(--space-4)), calc((100% - var(--container)) / 2 + var(--container-pad, var(--space-4))));
+}
+.bz-section > .bz-container.bz-container--bleed-right {
+  padding-right: 0;
+  padding-left: max(var(--container-pad, var(--space-4)), calc((100% - var(--container)) / 2 + var(--container-pad, var(--space-4))));
+}
+@media (max-width: 1100px) {
+  /* Below the grid width the bleed reads as clutter; behave like boxed. */
+  .bz-section > .bz-container.bz-container--bleed-left,
+  .bz-section > .bz-container.bz-container--bleed-right {
+    padding-inline: var(--container-pad-tablet, var(--container-pad, var(--space-4)));
+  }
+}
+
+/* Latest posts: category-grid cards plus a description line. */
+.bz-post { text-align: left; }
+.bz-post__d {
+  display: block;
+  margin-top: 4px;
+  font: 400 var(--text-small) / 1.5 var(--font-body);
+  color: var(--muted);
+}
+
+.bz-block--hero, .bz-block--statBand, .bz-block--serviceGrid, .bz-block--footer {
+  padding-block: var(--space-8);
+  background: var(--ink);
+  color: #fff;
+}
+.bz-block--splitHero { background: var(--card); }
+
+.bz-center { text-align: center; }
+.bz-center .bz-btns { justify-content: center; }
+.bz-prose { max-width: 68ch; }
+.bz-bare { list-style: none; margin: 0; padding: 0; }
+.bz-sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+.bz-hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
+
+.bz-grid { display: grid; gap: var(--space-5); }
+
+@media (min-width: 641px) {
+  .bz-grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .bz-grid--3 { grid-template-columns: repeat(2, 1fr); }
+  .bz-grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1101px) {
+  .bz-grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .bz-grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ------------------------------------------------------------ typography */
+
+.bz-block h1 { font: 800 var(--text-h1) / 1.08 var(--font-heading); letter-spacing: -0.01em; margin: 0 0 var(--space-4); }
+.bz-block h2 { font: 800 var(--text-h2) / 1.15 var(--font-heading); letter-spacing: -0.01em; margin: 0 0 var(--space-4); }
+.bz-block h3 { font: 700 var(--text-h3) / 1.25 var(--font-heading); margin: 0 0 var(--space-3); }
+.bz-block h4, .bz-block h5, .bz-block h6 { font: 700 var(--text-body) / 1.3 var(--font-heading); margin: 0 0 var(--space-2); }
+.bz-block p { margin: 0 0 var(--space-4); font-size: var(--text-body); line-height: 1.6; }
+.bz-block p:last-child { margin-bottom: 0; }
+
+.bz-eyebrow {
+  font: 700 var(--text-eyebrow) / 1.4 var(--font-heading);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); margin: 0 0 var(--space-3);
+}
+.bz-lede { font-size: var(--text-body); line-height: 1.6; color: var(--muted); max-width: 58ch; }
+.bz-lede--on-dark { color: rgba(255, 255, 255, 0.78); }
+.bz-badge {
+  display: inline-block; font: 700 var(--text-small) / 1 var(--font-heading);
+  background: var(--paper); color: var(--ink);
+  border-radius: var(--radius-chip); padding: var(--space-2) var(--space-4);
+  margin: 0 0 var(--space-4);
+}
+.bz-stars { color: var(--accent); letter-spacing: 2px; margin: 0 0 var(--space-2); }
+.bz-sechead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-4); }
+
+/* --------------------------------------------------------------- buttons */
+
+.bz-btns { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-block: var(--space-5); }
+.bz-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  font: 700 var(--text-small) / 1 var(--font-heading);
+  padding: var(--space-3) var(--space-5); border-radius: var(--radius-input);
+  text-decoration: none; border: 1.5px solid transparent; cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.bz-btn--primary { background: var(--accent); color: var(--ink-dark); }
+.bz-btn--primary:hover { background: var(--accent-dark); }
+.bz-btn--secondary { background: var(--card); color: var(--ink); border-color: var(--line); }
+.bz-btn--secondary:hover { border-color: var(--muted); }
+.bz-btn--link { background: none; color: var(--accent); padding-inline: 0; text-decoration: underline; }
+.bz-btn--on-dark.bz-btn--secondary { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.6); }
+.bz-btn--on-dark.bz-btn--link { color: var(--accent); }
+
+/* Focus is always visible — a keyboard user must be able to see where they are. */
+.bz-block a:focus-visible,
+.bz-block button:focus-visible,
+.bz-block summary:focus-visible,
+.bz-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ----------------------------------------------------------------- media */
+
+.bz-block img { max-width: 100%; height: auto; display: block; }
+.bz-figure { margin: 0; }
+.bz-figure img { border-radius: var(--radius-card); }
+.bz-figure figcaption { font-size: var(--text-small); color: var(--muted); margin-top: var(--space-2); }
+.bz-photo {
+  border: 1px dashed var(--line); border-radius: var(--radius-card);
+  background: var(--paper); color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 4 / 3; font-size: var(--text-small);
+}
+
+/* Both kinds reserve 16/9 before anything loads, so the page does not jump when
+   a file's metadata arrives or an embed's iframe paints. */
+.bz-video { position: relative; aspect-ratio: 16 / 9; background: var(--ink); border-radius: var(--radius-card); overflow: hidden; }
+.bz-video > video,
+.bz-video > iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+.bz-video > video { object-fit: cover; }
+
+/* Background video. The poster is painted on the section itself, so the band
+   reads identically before the file loads, under reduced motion, and on the
+   editing canvas — which never plays media. */
+.bz-section--bgvideo {
+  position: relative; overflow: hidden;
+  background-image: var(--bz-bgvideo-poster, none);
+  background-size: cover; background-position: center;
+}
+.bz-section__bgvideo {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  pointer-events: none;
+}
+.bz-section--bgvideo > .bz-container,
+.bz-section--bgvideo > .bz-block { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bz-section__bgvideo { display: none; }
+}
+
+/* ------------------------------------------------------------------ hero */
+
+.bz-block--hero { position: relative; overflow: hidden; }
+.bz-hero__bg { position: absolute; inset: 0; z-index: 0; }
+.bz-hero__img { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
+.bz-block--hero .bz-container { position: relative; z-index: 1; }
+.bz-hero__copy { max-width: 46rem; }
+.bz-hero__sub { font-size: var(--text-body); line-height: 1.6; color: rgba(255, 255, 255, 0.82); max-width: 34rem; }
+.bz-herosearch {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3);
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-card); padding: var(--space-4); margin-top: var(--space-5);
+}
+.bz-herosearch__l { font: 700 var(--text-eyebrow) / 1 var(--font-heading); letter-spacing: 0.06em; text-transform: uppercase; }
+.bz-herosearch .bz-input { flex: 1 1 12rem; }
+
+.bz-split { display: grid; gap: var(--space-6); align-items: center; }
+@media (min-width: 641px) { .bz-split { grid-template-columns: 1fr 1fr; } }
+
+/* ----------------------------------------------------------------- stats */
+
+.bz-stats { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin: 0; }
+.bz-stats--inline { border-top: 1px solid var(--line); padding-top: var(--space-4); }
+.bz-block--statBand .bz-stat { border-left: 1px solid rgba(255, 255, 255, 0.2); padding-left: var(--space-4); }
+.bz-stat__v { font: 800 var(--text-h3) / 1 var(--font-heading); color: var(--accent); }
+.bz-block--splitHero .bz-stat__v { color: var(--ink); }
+.bz-stat__l { font-size: var(--text-small); color: var(--muted); margin: var(--space-1) 0 0; }
+.bz-block--statBand .bz-stat__l { color: rgba(255, 255, 255, 0.7); }
+.bz-band { display: grid; gap: var(--space-6); align-items: center; }
+@media (min-width: 641px) { .bz-band { grid-template-columns: 1.3fr 1fr; } }
+.bz-band__b { color: rgba(255, 255, 255, 0.78); max-width: 34rem; }
+
+/* --------------------------------------------------------------- content */
+
+.bz-quick { display: block; border-top: 3px solid var(--ink); padding-top: var(--space-4); text-decoration: none; color: inherit; }
+.bz-quick__t { font: 700 var(--text-body) / 1.3 var(--font-heading); margin: 0 0 var(--space-2); }
+.bz-quick__d { font-size: var(--text-small); color: var(--muted); line-height: 1.5; margin: 0; }
+a.bz-quick:hover .bz-quick__t { color: var(--accent-dark); }
+
+.bz-card {
+  display: block; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius-card); overflow: hidden; text-decoration: none; color: inherit;
+}
+.bz-card img, .bz-card .bz-photo { border-radius: 0; width: 100%; }
+.bz-card__body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); }
+.bz-card__t { font: 700 var(--text-small) / 1.3 var(--font-heading); color: var(--ink); }
+.bz-card__m { font-size: var(--text-small); color: var(--muted); }
+.bz-card__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-1); margin: var(--space-2) 0 0; }
+.bz-card__facts dt { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.bz-card__facts dd { margin: 0.1rem 0 0; font-size: 0.82rem; font-weight: 700; color: var(--ink); }
+a.bz-card:hover { border-color: var(--muted); }
+.bz-searchbar__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+.bz-chip {
+  display: inline-flex; align-items: center; min-height: 36px;
+  padding: 0.3rem 0.85rem; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  text-decoration: none; font: 600 var(--text-small) / 1 var(--font-heading);
+}
+.bz-chip:hover { border-color: var(--muted); }
+
+.bz-feature__t { font: 700 var(--text-body) / 1.3 var(--font-heading); margin: 0 0 var(--space-2); }
+.bz-feature__d { font-size: var(--text-small); color: var(--muted); line-height: 1.5; margin: 0; }
+
+.bz-service { background: rgba(255, 255, 255, 0.06); border-radius: var(--radius-card); padding: var(--space-5); }
+.bz-service__t { color: #fff; margin: 0 0 var(--space-2); }
+.bz-service__d { font-size: var(--text-small); color: rgba(255, 255, 255, 0.75); line-height: 1.5; }
+
+.bz-quote { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); padding: var(--space-5); margin: 0; }
+.bz-quote blockquote { margin: 0 0 var(--space-3); font-size: var(--text-small); line-height: 1.55; color: var(--ink); }
+.bz-quote figcaption { display: flex; flex-direction: column; gap: 2px; }
+.bz-quote__n { font: 700 var(--text-small) / 1.2 var(--font-heading); color: var(--ink); }
+.bz-quote__r { font-size: var(--text-small); color: var(--muted); }
+
+.bz-logos { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-5); border-block: 1px solid var(--line); padding-block: var(--space-4); }
+.bz-logo { display: inline-flex; align-items: center; text-decoration: none; }
+.bz-logo__t { font: 700 var(--text-small) / 1 var(--font-heading); letter-spacing: 0.03em; color: var(--muted); }
+
+.bz-loclist { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: var(--space-4); }
+.bz-loc { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+.bz-loc__c { font: 700 var(--text-small) / 1.2 var(--font-heading); color: var(--ink); text-decoration: none; }
+a.bz-loc__c:hover { color: var(--accent); }
+.bz-loc__a { font-size: var(--text-small); color: var(--muted); font-style: normal; }
+.bz-loc__p, .bz-person__p { font-size: var(--text-small); color: var(--accent-dark); }
+.bz-loc__s { font-size: var(--text-small); color: var(--muted); }
+
+.bz-footerblock { display: grid; gap: var(--space-6); }
+@media (min-width: 641px) { .bz-footerblock { grid-template-columns: 1.4fr repeat(auto-fit, minmax(8rem, 1fr)); } }
+.bz-fbrand__n { font: 800 var(--text-h3) / 1.2 var(--font-heading); color: #fff; margin: 0 0 var(--space-2); }
+.bz-fbrand__t { font-size: var(--text-small); color: rgba(255, 255, 255, 0.7); }
+.bz-fcol__h { font: 700 var(--text-eyebrow) / 1 var(--font-heading); letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55); margin: 0 0 var(--space-3); }
+.bz-fcol a { font-size: var(--text-small); color: rgba(255, 255, 255, 0.85); text-decoration: none; display: inline-block; padding-block: var(--space-1); }
+.bz-fcol a:hover { color: #fff; text-decoration: underline; }
+.bz-flegal { font-size: var(--text-small); color: rgba(255, 255, 255, 0.55); margin-top: var(--space-5); }
+
+/* ----------------------------------------------------------------- forms */
+
+.bz-input {
+  width: 100%; box-sizing: border-box;
+  font: 400 var(--text-body) / 1.4 var(--font-body);
+  color: var(--ink); background: var(--card);
+  border: 1px solid var(--line); border-radius: var(--radius-input);
+  padding: var(--space-3) var(--space-4); min-height: 44px;
+}
+.bz-input::placeholder { color: var(--muted); }
+.bz-form { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); padding: var(--space-5); display: flex; flex-wrap: wrap; gap: var(--space-4); max-width: 34rem; }
+.bz-form > * { flex: 1 1 100%; min-width: 0; }
+.bz-form__t { font: 700 var(--text-h3) / 1.2 var(--font-heading); margin: 0; }
+.bz-field { display: flex; flex-direction: column; gap: var(--space-2); }
+.bz-field[hidden] { display: none; }
+/* Two adjacent halves make a pair. One on its own still fills the row, so
+   deleting the field beside it cannot leave a gap nobody notices. */
+.bz-field--half { flex: 1 1 calc(50% - (var(--space-4) / 2)); min-width: 11rem; }
+.bz-field--hp { position: absolute; left: -9999px; }
+.bz-label { font: 700 var(--text-small) / 1.2 var(--font-heading); color: var(--ink); }
+.bz-req { color: var(--bad); }
+.bz-help { font-size: var(--text-small); color: var(--muted); margin: 0; }
+.bz-choices { display: flex; flex-direction: column; gap: var(--space-2); }
+.bz-choice { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--text-small); line-height: 1.4; }
+.bz-choice input { margin-top: 3px; width: 18px; height: 18px; }
+.bz-form__status { font-size: var(--text-small); margin: 0; }
+.bz-form__status[data-state='error'] { color: var(--bad); }
+.bz-form__status[data-state='ok'] { color: var(--ok); }
+.bz-form[data-state='sent'] > *:not(.bz-form__status):not(.bz-form__t) { display: none; }
+
+/* --------------------------------------------------------------- widgets */
+
+.bz-widget { display: block; }
+.bz-widget__h { font: 700 var(--text-h3) / 1.25 var(--font-heading); margin: 0 0 var(--space-4); }
+.bz-widget__empty { font-size: var(--text-small); color: var(--muted); }
+.bz-widget--behaviour { display: none; }
+.bz-map { aspect-ratio: 16 / 9; border-radius: var(--radius-card); background: var(--paper); border: 1px solid var(--line); margin-bottom: var(--space-4); overflow: hidden; position: relative; }
+/* The `static` provider: OSM tiles as images, so there is no iframe for a sandboxed
+   Preview to refuse. The grid is deliberately larger than the box and centred, so the
+   point of interest sits in the middle whatever the container's shape. */
+.bz-map__g { display: grid; grid-template-columns: repeat(var(--bz-map-cols, 4), 1fr); position: absolute; inset: 0; margin: auto; width: 100%; height: 100%; }
+.bz-map__t { display: block; width: 100%; height: 100%; object-fit: cover; }
+.bz-map__a { position: absolute; right: 4px; bottom: 4px; font-size: 10px; line-height: 1.4; padding: 1px 5px; border-radius: 3px; background: rgb(255 255 255 / .8); color: #333; text-decoration: none; }
+
+/* The dealer's own map art with a pin per rooftop. No aspect-ratio of its own: the
+   artwork sets it, because the pins are placed at percentages of this box and a box
+   that is not the artwork's shape puts every one of them somewhere else. */
+.bz-pinmap { position: relative; }
+.bz-pinmap__art { display: block; width: 100%; height: auto; }
+/* No artwork yet. A zero-height box cannot be selected on the canvas, so the
+   dealer never reaches the upload that would fill it. */
+.bz-pinmap__empty {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  background: var(--paper);
+  border: 1px dashed var(--line);
+  color: var(--muted);
+  font-size: var(--text-small);
+}
+.bz-pins { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+/* Positioned by the widget's inline left/top, then pulled back by half its own size
+   so the dot's centre lands on the coordinate rather than its top-left corner. */
+.bz-pin { position: absolute; transform: translate(-50%, -50%); }
+.bz-pin__a { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); text-decoration: none; color: inherit; }
+.bz-pin__dot { display: block; width: var(--bz-pin-size, 14px); height: var(--bz-pin-size, 14px); border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--card); }
+.bz-pin__l { font-size: var(--text-small); white-space: nowrap; }
+/* Dimmed, never removed — see `data-bz-reveal` in client/widgets.js. A map that drops
+   a pin when a chip is pressed has lost the comparison the map is there to make. */
+.bz-pin[data-bz-match='0'] { opacity: .28; }
+.bz-pin[data-bz-match='1'] { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .bz-pin { transition: opacity 200ms ease; }
+}
+
+/* A rooftop with no photograph yet. Holds the design's shape and says nothing:
+   published copy explaining that an image is missing is worse than the gap. */
+.bz-locphoto__empty { aspect-ratio: 4 / 3; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-card); }
+.bz-widget--location-photo img { display: block; width: 100%; height: auto; border-radius: var(--radius-card); }
+.bz-people { display: grid; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); gap: var(--space-5); }
+.bz-person { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); text-align: center; }
+.bz-person img, .bz-person .bz-photo { width: 96px; height: 96px; border-radius: var(--radius-chip); object-fit: cover; aspect-ratio: 1; }
+.bz-person__n { font: 700 var(--text-small) / 1.2 var(--font-heading); }
+.bz-person__t { font-size: var(--text-small); color: var(--muted); }
+.bz-phones { display: flex; flex-direction: column; gap: var(--space-2); }
+.bz-phone { display: flex; justify-content: space-between; gap: var(--space-4); border-bottom: 1px solid var(--line); padding-block: var(--space-2); font-size: var(--text-small); }
+.bz-phone__l { color: var(--muted); }
+.bz-widget--hours { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--space-6); }
+.bz-hours { width: 100%; border-collapse: collapse; font-size: var(--text-small); }
+.bz-hours caption { text-align: left; font: 700 var(--text-body) / 1.3 var(--font-heading); margin-bottom: var(--space-3); }
+.bz-hours th, .bz-hours td { text-align: left; padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
+.bz-hours td { color: var(--muted); }
+.bz-faqs { display: flex; flex-direction: column; gap: var(--space-2); }
+.bz-faq { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); padding: var(--space-3) var(--space-4); }
+.bz-faq summary { font: 700 var(--text-small) / 1.4 var(--font-heading); cursor: pointer; }
+.bz-faq__a { font-size: var(--text-small); color: var(--muted); line-height: 1.55; margin-top: var(--space-2); }
+.bz-searchbar { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.bz-searchbar .bz-input { flex: 1 1 12rem; }
+
+/* ------------------------------------------------------------------- nav */
+
+.bz-nav { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-4); margin: 0; padding: 0; }
+.bz-navitem { position: relative; }
+.bz-navitem > a { text-decoration: none; color: inherit; font: 600 var(--text-small) / 1 var(--font-heading); }
+.bz-subnav { list-style: none; margin: var(--space-2) 0 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+
+/* --------------------------------------------------------------- motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .bz-btn, .bz-card, .bz-quick { transition: none; }
+}
+
+/* ------------------------------------------------------------------ chrome */
+/* Header and footer are templates built from these, edited in the same canvas a
+   page is. Nothing here is per-dealer: the look comes from the tokens. */
+
+.bz-bar { background: var(--card); color: var(--ink); }
+.bz-bar--paper { background: var(--paper); }
+.bz-bar--transparent { background: transparent; }
+.bz-bar--ink { background: var(--ink); color: #fff; }
+.bz-bar--divider { border-bottom: 1px solid var(--line); }
+.bz-bar--ink.bz-bar--divider { border-bottom-color: rgba(255, 255, 255, 0.15); }
+.bz-bar--sticky { position: sticky; top: 0; z-index: 20; }
+
+.bz-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+}
+.bz-bar--compact .bz-bar__inner { padding-block: var(--space-2); }
+.bz-bar__cell { display: flex; align-items: center; gap: var(--space-4); min-width: 0; }
+.bz-bar__cell:nth-child(2) { flex: 1 1 auto; }
+.bz-bar__cell:last-child { justify-content: flex-end; }
+.bz-bar__cell .bz-btns { margin-block: 0; }
+.bz-bar__cell .bz-block { padding-block: 0; }
+.bz-bar__cell .bz-container { max-width: none; padding-inline: 0; }
+.bz-bar--ink .bz-block p { color: rgba(255, 255, 255, 0.75); font-size: var(--text-small); }
+
+/* A footer stacks on a phone; a header does not, because the menu collapses. */
+@media (max-width: 640px) {
+  .bz-bar--ink .bz-bar__inner { flex-direction: column; align-items: flex-start; }
+  .bz-bar--ink .bz-bar__cell { width: 100%; justify-content: flex-start; }
+}
+
+.bz-brand { display: inline-flex; align-items: center; gap: var(--space-2); text-decoration: none; color: inherit; }
+.bz-logo__img { height: var(--bz-logo-h, 34px); width: auto; }
+.bz-logo__word { font: 800 var(--text-h3) / 1 var(--font-heading); letter-spacing: -0.01em; }
+
+.bz-menu { display: flex; min-width: 0; }
+.bz-menu--center { justify-content: center; }
+.bz-menu--end { justify-content: flex-end; }
+.bz-menu--horizontal .bz-nav { flex-direction: row; align-items: center; }
+.bz-menu--vertical .bz-nav { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+.bz-nav { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+.bz-navitem > a,
+.bz-navlabel {
+  display: inline-block;
+  padding-block: var(--space-1);
+  font: 600 var(--text-small) / 1.2 var(--font-heading);
+  color: inherit;
+  text-decoration: none;
+}
+.bz-bar--ink .bz-navitem > a { color: rgba(255, 255, 255, 0.85); }
+.bz-navitem > a:hover { color: var(--accent-dark); }
+.bz-bar--ink .bz-navitem > a:hover { color: #fff; }
+.bz-navlabel { color: var(--muted); font-weight: 700; }
+.bz-navitem > a[aria-current='page'] { color: var(--accent-dark); }
+
+/* One level of dropdown, opened on hover and on focus so it is reachable from a
+   keyboard. The chrome script adds a click fallback on touch. */
+.bz-navitem--has-sub { position: relative; }
+.bz-subnav {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 30;
+  display: none;
+  min-width: 12rem;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-3);
+  list-style: none;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-md);
+}
+.bz-navitem--has-sub:hover > .bz-subnav,
+.bz-navitem--has-sub:focus-within > .bz-subnav,
+.bz-navitem--has-sub[data-open] > .bz-subnav { display: flex; }
+.bz-subnav .bz-navitem > a { color: var(--ink); }
+.bz-menu--vertical .bz-subnav { position: static; display: flex; border: 0; padding: var(--space-2) 0 0 var(--space-3); background: none; box-shadow: none; }
+
+/* Mega nav: the same menu data, drawn as a full-width panel.
+   A three-level menu is already the right shape for this — item > column
+   heading > links — so nothing about the model changes; only where the panel
+   sits and how its children flow. Level two becomes the columns, level three
+   the links under each, and a `label` item is a column heading that is
+   deliberately not a link. Centred on the trigger with a viewport-wide panel,
+   which needs no JS and no wrapper: the only requirement is that no ancestor
+   clips overflow. */
+.bz-menu--mega .bz-nav > .bz-navitem--has-sub > .bz-subnav {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 100vw;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: var(--space-7) var(--space-5);
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}
+/* Each column: a heading plus its links, stacked and static inside the panel. */
+.bz-menu--mega .bz-nav > .bz-navitem--has-sub > .bz-subnav > .bz-navitem {
+  min-width: 9rem;
+}
+.bz-menu--mega .bz-subnav .bz-subnav {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  min-width: 0;
+  transform: none;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.bz-menu--mega .bz-subnav > .bz-navitem > .bz-navlabel {
+  display: block;
+  font: 700 var(--text-eyebrow) / 1 var(--font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+/* Below the grid width a full-viewport panel is unusable; it becomes the
+   ordinary stacked disclosure the collapse behaviour already handles. */
+@media (max-width: 1100px) {
+  .bz-menu--mega .bz-nav > .bz-navitem--has-sub > .bz-subnav {
+    position: static;
+    width: auto;
+    max-width: none;
+    transform: none;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--space-3);
+  }
+}
+
+.bz-menu-wrap { display: flex; align-items: center; gap: var(--space-3); min-width: 0; flex: 1 1 auto; }
+.bz-menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--space-2);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-input);
+  cursor: pointer;
+}
+.bz-menu-toggle span { display: block; width: 18px; height: 2px; background: currentColor; }
+
+/* -------------------------------------------------------------- behaviours */
+/* The presentation half of the behaviour contract in renderer/client/widgets.js.
+   Selectors key off data attributes, never class names, so a dealer or the AI
+   can restyle a carousel to look like anything without breaking how it works.
+
+   Note which attributes appear here: `data-bz-carousel`, `data-bz-dropdown` and
+   `data-bz-drawer` are set by the script, not by the markup. So a panel is only
+   ever hidden once something is there to open it — with JavaScript off, a mega
+   menu renders as a plain expanded list of links, which is unstyled but
+   navigable and crawlable. Hiding it unconditionally would strand it. */
+
+[data-bz-carousel] { position: relative; }
+[data-bz-track] {
+  display: flex;
+  gap: var(--bz-slide-gap, var(--space-5));
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  padding-bottom: var(--space-2);
+}
+[data-bz-track]::-webkit-scrollbar { height: 6px; }
+[data-bz-track]::-webkit-scrollbar-thumb { background: var(--line); border-radius: var(--radius-chip); }
+[data-bz-track] > [data-bz-part='slide'] {
+  flex: 0 0 var(--bz-slide, 320px);
+  scroll-snap-align: start;
+  min-width: 0;
+}
+[data-bz-carousel] [data-bz-part='prev'],
+[data-bz-carousel] [data-bz-part='next'] {
+  cursor: pointer;
+}
+[data-bz-carousel] [data-bz-part='prev']:disabled,
+[data-bz-carousel] [data-bz-part='next']:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+[data-bz-part='dots'] { display: flex; gap: var(--space-2); align-items: center; }
+.bz-dot {
+  width: 8px; height: 8px; padding: 0;
+  border: 0; border-radius: var(--radius-chip);
+  background: var(--line); cursor: pointer;
+}
+.bz-dot[aria-current='true'] { background: var(--accent); width: 22px; }
+
+/* Filtered-out items and inactive rotator slides. `hidden` is the mechanism in
+   both cases, so one rule covers them and nothing needs a class toggled. */
+[data-bz-part='item'][hidden],
+[data-bz-part='slide'][hidden],
+[data-bz-part='empty'][hidden] { display: none; }
+
+[data-bz-part='control'] { cursor: pointer; }
+[data-bz-part='control'][data-bz-active] { border-color: var(--accent); color: var(--accent-dark); }
+
+[data-bz-dropdown] { position: relative; }
+[data-bz-dropdown] [data-bz-part='panel'] { display: none; }
+[data-bz-dropdown] [data-bz-part='panel'][data-open] { display: block; }
+
+[data-bz-drawer] [data-bz-part='panel'] { display: none; }
+[data-bz-drawer][data-open] [data-bz-part='panel'] { display: block; }
+
+[data-bz-behavior~='scrollstate'] [data-bz-part='totop'] {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+[data-bz-behavior~='scrollstate'][data-bz-scrolled] [data-bz-part='totop'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-bz-track] { scroll-behavior: auto; }
+  [data-bz-behavior~='scrollstate'] [data-bz-part='totop'] { transition: none; }
+}
+
+@media (max-width: 1100px) {
+  .bz-menu-toggle { display: inline-flex; }
+  .bz-menu-wrap > .bz-menu { display: none; }
+  .bz-menu-wrap[data-open] > .bz-menu {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: var(--space-4);
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+  }
+  .bz-menu-wrap[data-open] .bz-nav { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  .bz-bar__inner { position: relative; }
+}

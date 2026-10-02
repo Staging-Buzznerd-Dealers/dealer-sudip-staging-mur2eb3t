@@ -1,0 +1,74 @@
+{
+  "id": "financing",
+  "name": "Financing",
+  "status": "live",
+  "system": true,
+  "pdpContext": true,
+  "surfaces": ["pdp", "page"],
+  "intent": "financing",
+  "submitLabel": "Send to the finance team",
+  "successMessage": "Thanks — a finance manager will be in touch. Nothing you sent is a credit application or a credit check.",
+  "consent": {
+    "enabled": true,
+    "required": true,
+    "text": "I agree to be contacted about financing by phone, text or email."
+  },
+  "fields": [
+    { "id": "fi-name", "type": "full_name", "label": "Full name", "required": true },
+    { "id": "fi-email", "type": "email", "label": "Email", "required": true, "width": "half" },
+    { "id": "fi-phone", "type": "phone", "label": "Phone", "required": true, "width": "half" },
+    {
+      "id": "fi-buyer",
+      "type": "radio",
+      "label": "Buying as",
+      "required": true,
+      "options": [
+        { "value": "business", "label": "A business" },
+        { "value": "individual", "label": "An individual" }
+      ]
+    },
+    {
+      "id": "fi-years",
+      "type": "dropdown",
+      "label": "Time in business",
+      "required": false,
+      "options": [
+        { "value": "startup", "label": "Less than a year" },
+        { "value": "1-2", "label": "1–2 years" },
+        { "value": "2-plus", "label": "More than 2 years" }
+      ],
+      "logic": {
+        "logic": "AND",
+        "action": "show",
+        "rules": [{ "fieldId": "fi-buyer", "operator": "is", "value": "business" }]
+      }
+    },
+    { "id": "fi-down", "type": "number", "label": "Planned down payment ($)", "required": false, "width": "half" },
+    {
+      "id": "fi-credit",
+      "type": "dropdown",
+      "label": "How would you describe your credit?",
+      "required": false,
+      "width": "half",
+      "options": [
+        { "value": "excellent", "label": "Excellent" },
+        { "value": "good", "label": "Good" },
+        { "value": "fair", "label": "Fair" },
+        { "value": "rebuilding", "label": "Rebuilding" },
+        { "value": "not-sure", "label": "Not sure" }
+      ]
+    },
+    { "id": "fi-message", "type": "paragraph", "label": "Anything else?", "required": false }
+  ],
+  "notifications": [
+    {
+      "id": "fi-default",
+      "name": "Default",
+      "logic": "AND",
+      "rules": [],
+      "targetType": "role",
+      "roleId": "finance-manager",
+      "scopeMode": "dynamic"
+    }
+  ]
+}

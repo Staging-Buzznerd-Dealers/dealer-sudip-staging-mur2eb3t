@@ -1,0 +1,89 @@
+{
+  "version": 2,
+  "id": "default",
+  "name": "Site template",
+  "conditions": [{ "type": "entireSite", "ref": null }],
+  "nodes": [
+    {
+      "id": "header",
+      "type": "section",
+      "props": { "width": "boxed", "paddingY": 3, "background": "card" },
+      "children": [
+        {
+          "id": "header-row",
+          "type": "row",
+          "props": { "gap": 5, "align": "center", "stackOn": "mobile" },
+          "children": [
+            {
+              "id": "header-brand",
+              "type": "column",
+              "props": { "span": 3, "align": "center" },
+              "children": [{ "id": "logo", "type": "logo", "props": { "url": "/", "height": 34 } }]
+            },
+            {
+              "id": "header-nav",
+              "type": "column",
+              "props": { "span": 6, "align": "center" },
+              "children": [
+                {
+                  "id": "main-nav",
+                  "type": "menu",
+                  "props": { "menuId": "main", "layout": "horizontal", "align": "center", "collapseOnMobile": true }
+                }
+              ]
+            },
+            {
+              "id": "header-cta",
+              "type": "column",
+              "props": { "span": 3, "align": "center" },
+              "children": [
+                {
+                  "id": "header-button",
+                  "type": "buttons",
+                  "props": { "items": [{ "ctaId": "browse-inventory" }], "align": "left" }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    { "id": "content", "type": "contentArea", "props": { "label": "Page content" } },
+    {
+      "id": "footer",
+      "type": "section",
+      "props": { "width": "boxed", "paddingY": 7, "background": "ink" },
+      "children": [
+        {
+          "id": "footer-row",
+          "type": "row",
+          "props": { "gap": 6, "align": "start" },
+          "children": [
+            {
+              "id": "footer-brand",
+              "type": "column",
+              "props": { "span": 4 },
+              "children": [{ "id": "footer-logo", "type": "logo", "props": { "url": "/", "height": 28 } }]
+            },
+            {
+              "id": "footer-links",
+              "type": "column",
+              "props": { "span": 4 },
+              "children": [
+                { "id": "footer-nav", "type": "menu", "props": { "menuId": "footer", "layout": "vertical" } }
+              ]
+            },
+            {
+              "id": "footer-legal",
+              "type": "column",
+              "props": { "span": 4 },
+              "children": [
+                { "id": "legal-nav", "type": "menu", "props": { "menuId": "legal", "layout": "vertical" } }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

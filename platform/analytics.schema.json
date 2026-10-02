@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://buzznerd.com/schemas/platform-analytics.json",
+  "title": "platform/analytics.json",
+  "description": "The analytics providers a dealer has enabled, baked by the platform on every publish. Platform-owned and regenerated wholesale — an edit here is lost on the next publish, and until it is lost this dealer is tagged in a way nobody else is. A dealer in no programme has no such file at all, and their built site then contains no third-party code and no third-party URL.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["providers"],
+  "properties": {
+    "runtimeVersion": {
+      "type": ["string", "null"],
+      "description": "The renderer version this repo is on, for providers that report a site technology version."
+    },
+    "providers": {
+      "type": "array",
+      "description": "Only enabled providers appear. An empty array is meaningful: it is a dealer who turned every provider off, and the head emits nothing.",
+      "items": { "$ref": "#/definitions/provider" }
+    },
+    "vocabularies": {
+      "type": "object",
+      "additionalProperties": { "type": "array", "items": { "type": "string" } },
+      "description": "Closed vocabularies site/ must author against, keyed by name — today just pageTypes. The intersection of the enabled providers' lists, because a page carries one pageType and every provider that names it receives that same value. It is the same map the dashboard builds its select from, so a value a dealer was offered cannot be one their build then refuses. Absent or empty leaves the field unconstrained."
+    }
+  },
+  "definitions": {
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "adapterUrl", "settings", "requiredForProduction"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The descriptor id the platform registered this provider under."
+        },
+        "adapterUrl": {
+          "type": "string",
+          "description": "Absolute URL of the adapter that maps platform event names onto this vendor's calls. Loaded async by the runtime, because everything with a deadline is already done by the head bootstrap."
+        },
+        "settings": {
+          "type": "object",
+          "description": "This dealer's values for the provider. PUBLIC: they are baked into a static file on the dealer's own domain and served over the Shop API. An API key must never be stored here.",
+          "additionalProperties": true
+        },
+        "consentCategory": {
+          "type": ["string", "null"],
+          "description": "The consent category this provider falls under, when the dealer's consent tool distinguishes them."
+        },
+        "requiredForProduction": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Settings keys whose value must not be a REPLACE_ placeholder. Copied from the descriptor so scripts/build.mjs can refuse a production build without knowing what the provider is."
+        },
+        "bootstrap": {
+          "$ref": "#/definitions/bootstrap"
+        }
+      }
+    },
+    "bootstrap": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The synchronous head tag. Present when the vendor requires its own tag in the head; absent when the adapter alone is enough. Nothing here is evaluated as code: the renderer interpolates these values into a fixed queueing-stub shape through JSON.stringify.",
+      "properties": {
+        "globalName": {
+          "type": "string",
+          "pattern": "^[A-Za-z_$][A-Za-z0-9_$]*$",
+          "description": "The global the vendor's script expects. A bare identifier, because it is written into executable code."
+        },
+        "globalKind": {
+          "enum": ["function", "queue"],
+          "description": "Whether the global is a function that queues its arguments (the sd/ga shape) or a plain array the vendor's script drains (the dataLayer shape). Emitting the wrong one breaks the tag outright — a queue vendor calls .push and a function has none — so it is declared rather than guessed. Defaults to function."
+        },
+        "script": {
+          "type": ["string", "null"],
+          "description": "The vendor script, loaded async after the stub and its calls."
+        },
+        "calls": {
+          "type": "array",
+          "description": "Calls made on the stub before the page call, each an argument list.",
+          "items": { "type": "array" }
+        },
+        "pageCall": {
+          "type": "array",
+          "description": "Leading arguments of the page call. The page facts and this dealer's settings are appended as one object."
+        },
+        "readyCall": {
+          "type": "array",
+          "description": "The call that sends the first page view. Its presence is what tells the runtime not to send that page view again."
+        },
+        "pageKeys": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Platform page-fact name -> this vendor's name for it. A fact with no entry is not sent, which is how a provider opts out of one without the renderer knowing the fact exists.",
+          "propertyNames": { "type": "string" }
+        },
+        "pageValues": {
+          "type": "object",
+          "additionalProperties": { "type": "object", "additionalProperties": { "type": "string" } },
+          "description": "Platform page-fact name -> a map from the platform's own words to this vendor's. The storefront derives a page's kind from its route and knows no provider, so it emits a platform kind and this translates it. A value with no entry passes through untouched, which is what lets a brand-site page authored in the vendor's own vocabulary work through the same path."
+        }
+      }
+    }
+  }
+}

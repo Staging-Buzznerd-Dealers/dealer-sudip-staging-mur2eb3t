@@ -1,0 +1,203 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://buzznerd.com/schemas/dealer.config.schema.json",
+  "title": "Dealer site configuration",
+  "description": "Brand token VALUES, business facts, SEO defaults and operational linkage for a dealer's static brand site. All site CONTENT lives in the site/ plain files, never here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "shortName",
+    "channelToken",
+    "domain",
+    "url",
+    "storefrontOrigin",
+    "contractVersion",
+    "business",
+    "seo"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "shortName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "channelToken": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable Vendure channel token. Ties the repo, Vercel project and inventory rewrite together."
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Public host, e.g. <channelToken>.buzznerd.com"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical absolute site URL, e.g. https://<channelToken>.buzznerd.com"
+    },
+    "contractVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Version of the ai/*.md rulebook this site was built under."
+    },
+    "business": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Business facts. Kept truthful and consistent with visible markup + JSON-LD.",
+      "required": [
+        "type",
+        "legalName",
+        "phone",
+        "email",
+        "streetAddress",
+        "addressLocality",
+        "addressRegion",
+        "postalCode",
+        "addressCountry",
+        "priceRange",
+        "openingHours"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "AutoDealer",
+            "LocalBusiness",
+            "Store",
+            "Organization"
+          ]
+        },
+        "legalName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "email": {
+          "type": "string",
+          "minLength": 1
+        },
+        "streetAddress": {
+          "type": "string"
+        },
+        "addressLocality": {
+          "type": "string"
+        },
+        "addressRegion": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "addressCountry": {
+          "type": "string"
+        },
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        },
+        "priceRange": {
+          "type": "string"
+        },
+        "openingHours": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "seo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defaultTitle",
+        "titleTemplate",
+        "defaultDescription",
+        "ogImage",
+        "locale",
+        "themeColor"
+      ],
+      "properties": {
+        "defaultTitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "titleTemplate": {
+          "type": "string",
+          "description": "Template applied to non-home page titles, e.g. \"%s | Dealer Name\"."
+        },
+        "defaultDescription": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ogImage": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locale": {
+          "type": "string",
+          "minLength": 2
+        },
+        "themeColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{3,8}$"
+        }
+      }
+    },
+    "storefrontOrigin": {
+      "type": "string",
+      "description": "Origin of the Remix inventory storefront for this dealer. Each dealer proxies to their own subdomain: the app identifies the dealer by hostname, so one shared origin cannot serve two."
+    },
+    "storefrontPrefix": {
+      "type": "string",
+      "default": "store",
+      "description": "The single URL prefix the storefront is mounted under. Preserved by the proxy, never stripped — Remix mounts routes and client bundles beneath it, so a stripped prefix yields HTML that renders and never hydrates."
+    },
+    "logo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "favicon": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "analytics": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Platform analytics. Written by the platform on connect and publish; not dealer-editable. Which third-party providers a dealer has enabled lives in platform/analytics.json, not here — one file per concern, and this one is read by the dealer's own site while that one is regenerated on every publish.",
+      "properties": {
+        "loaderUrl": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Platform-hosted analytics loader. Tracking logic is never inlined: a fleet-wide change must not require a commit in every dealer repo."
+        },
+        "loaderVersion": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "The renderer version this repo is on. Reported by providers that ask for the site technology version. Never hardcoded, or it drifts per dealer the moment a renderer ships."
+        }
+      }
+    }
+  }
+}

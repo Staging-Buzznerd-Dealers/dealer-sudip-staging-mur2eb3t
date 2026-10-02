@@ -1,0 +1,17 @@
+{
+  "name": "dealer-site-template",
+  "private": true,
+  "type": "module",
+  "version": "4.0.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/build.mjs",
+    "schemas": "node scripts/export-schemas.mjs",
+    "test": "node --test renderer/renderer.spec.mjs",
+    "validate": "node scripts/validate.mjs",
+    "check": "npm run validate && npm test && npm run build"
+  }
+}

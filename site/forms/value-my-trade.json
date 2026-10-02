@@ -1,0 +1,60 @@
+{
+  "id": "value-my-trade",
+  "name": "Value my trade",
+  "status": "live",
+  "system": true,
+  "pdpContext": true,
+  "surfaces": ["pdp", "page"],
+  "intent": "value-trade",
+  "submitLabel": "Get my trade value",
+  "successMessage": "Thanks — we will come back to you with a value for your trade.",
+  "consent": {
+    "enabled": true,
+    "required": true,
+    "text": "I agree to be contacted about my trade-in by phone, text or email."
+  },
+  "fields": [
+    { "id": "vt-name", "type": "full_name", "label": "Full name", "required": true },
+    { "id": "vt-email", "type": "email", "label": "Email", "required": true, "width": "half" },
+    { "id": "vt-phone", "type": "phone", "label": "Phone", "required": true, "width": "half" },
+    { "id": "vt-year", "type": "number", "label": "Year", "required": true, "width": "half" },
+    { "id": "vt-make", "type": "single_line", "label": "Make", "required": true, "width": "half" },
+    { "id": "vt-model", "type": "single_line", "label": "Model", "required": true, "width": "half" },
+    { "id": "vt-miles", "type": "single_line", "label": "Mileage or hours", "required": false, "width": "half" },
+    { "id": "vt-vin", "type": "single_line", "label": "VIN or serial number", "required": false },
+    {
+      "id": "vt-condition",
+      "type": "dropdown",
+      "label": "Condition",
+      "required": false,
+      "options": [
+        { "value": "excellent", "label": "Excellent" },
+        { "value": "good", "label": "Good" },
+        { "value": "fair", "label": "Fair" },
+        { "value": "needs-work", "label": "Needs work" }
+      ]
+    },
+    {
+      "id": "vt-owed",
+      "type": "radio",
+      "label": "Is there a loan or lease on it?",
+      "required": false,
+      "options": [
+        { "value": "yes", "label": "Yes" },
+        { "value": "no", "label": "No" }
+      ]
+    },
+    { "id": "vt-message", "type": "paragraph", "label": "Anything we should know about it?", "required": false }
+  ],
+  "notifications": [
+    {
+      "id": "vt-default",
+      "name": "Default",
+      "logic": "AND",
+      "rules": [],
+      "targetType": "role",
+      "roleId": "sales-manager",
+      "scopeMode": "dynamic"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "id": "browse-inventory",
+    "label": "Browse inventory",
+    "url": "/store",
+    "style": "primary",
+    "intent": "browse-inventory",
+    "newTab": false,
+    "active": true
+  },
+  {
+    "id": "request-quote",
+    "label": "Request a quote",
+    "url": null,
+    "formId": "request-a-quote",
+    "style": "primary",
+    "intent": "get-quote",
+    "newTab": false,
+    "active": true
+  },
+  {
+    "id": "book-service",
+    "label": "Book service",
+    "url": null,
+    "formId": "request-info",
+    "style": "secondary",
+    "intent": "book-service",
+    "newTab": false,
+    "active": true
+  },
+  {
+    "id": "call-us",
+    "label": "Call us",
+    "url": "tel:+15551234567",
+    "style": "secondary",
+    "intent": "call-dealer",
+    "newTab": false,
+    "active": true
+  },
+  {
+    "id": "about-us",
+    "label": "About us",
+    "url": "/about",
+    "style": "link",
+    "intent": "about",
+    "newTab": false,
+    "active": true
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "id": "logo-carousel",
+  "name": "Logo carousel",
+  "css": ".logo-rail img { max-height: 48px; width: auto; filter: grayscale(1); opacity: .7 }\n.logo-rail img:hover { filter: none; opacity: 1 }",
+  "js": "document.querySelectorAll('[data-bz-section=\"logo-carousel\"]').forEach(function (el) {\n  el.setAttribute('data-logo-count', el.querySelectorAll('img').length);\n});",
+  "props": [
+    {
+      "key": "heading",
+      "type": "text",
+      "label": "Heading",
+      "default": "Brands we carry"
+    },
+    {
+      "key": "logos",
+      "type": "list",
+      "label": "Logos",
+      "fields": [
+        { "key": "image", "type": "image", "label": "Logo" },
+        { "key": "url", "type": "url", "label": "Links to" }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "logos",
+      "type": "section",
+      "props": { "width": "boxed", "paddingY": 7, "behaviour": "carousel", "behaviourOptions": "{\"perMove\":2}" },
+      "children": [
+        {
+          "id": "logos-head",
+          "type": "row",
+          "children": [
+            {
+              "id": "logos-headcol",
+              "type": "column",
+              "props": { "span": 12 },
+              "children": [{ "id": "logos-title", "type": "heading", "props": { "text": "{{heading}}", "headingLevel": 2 } }]
+            }
+          ]
+        },
+        {
+          "id": "logos-rail",
+          "type": "row",
+          "props": { "part": "track" },
+          "children": [
+            {
+              "id": "logos-slide",
+              "type": "column",
+              "props": { "span": 3, "part": "slide", "repeat": "logos" },
+              "children": [
+                {
+                  "id": "logos-image",
+                  "type": "image",
+                  "props": { "image": "{{image}}", "url": "{{url}}" }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

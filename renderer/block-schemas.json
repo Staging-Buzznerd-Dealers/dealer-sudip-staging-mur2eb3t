@@ -1,0 +1,3269 @@
+{
+  "rendererVersion": "4.25.0",
+  "documentVersion": 2,
+  "gridColumns": 12,
+  "tokenGroups": {
+    "colors": [
+      "accent",
+      "accentDark",
+      "ink",
+      "inkDark",
+      "muted",
+      "line",
+      "card",
+      "paper"
+    ],
+    "status": [
+      "ok",
+      "info",
+      "warn",
+      "bad"
+    ],
+    "type": [
+      "h1",
+      "h2",
+      "h3",
+      "body",
+      "small",
+      "eyebrow"
+    ],
+    "typography": [
+      "headingWeight",
+      "bodyWeight",
+      "headingLineHeight",
+      "bodyLineHeight"
+    ],
+    "spacing": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "radius": [
+      "nav",
+      "input",
+      "card",
+      "modal",
+      "chip"
+    ],
+    "fonts": [
+      "heading",
+      "body"
+    ],
+    "layout": [
+      "container",
+      "padDesktop",
+      "padTablet",
+      "padMobile"
+    ]
+  },
+  "defaultTokens": {
+    "version": 2,
+    "fonts": {
+      "heading": "Plus Jakarta Sans",
+      "body": "Plus Jakarta Sans",
+      "files": []
+    },
+    "colors": {
+      "accent": "#d99038",
+      "accentDark": "#b8762a",
+      "ink": "#111c3a",
+      "inkDark": "#0a1226",
+      "muted": "#7c86a2",
+      "line": "#dde3ee",
+      "card": "#ffffff",
+      "paper": "#f4f6fb"
+    },
+    "status": {
+      "ok": "#3a6b4a",
+      "info": "#3a5ea8",
+      "warn": "#b5761f",
+      "bad": "#b03a32"
+    },
+    "type": {
+      "h1": 48,
+      "h2": 34,
+      "h3": 24,
+      "body": 16,
+      "small": 14,
+      "eyebrow": 12
+    },
+    "typography": {
+      "headingWeight": 700,
+      "bodyWeight": 400,
+      "headingLineHeight": 1.15,
+      "bodyLineHeight": 1.6
+    },
+    "spacing": {
+      "1": 4,
+      "2": 8,
+      "3": 12,
+      "4": 16,
+      "5": 24,
+      "6": 32,
+      "7": 48
+    },
+    "radius": {
+      "nav": 6,
+      "input": 8,
+      "card": 10,
+      "modal": 14,
+      "chip": 999
+    },
+    "layout": {
+      "container": "1160px",
+      "padDesktop": 16,
+      "padTablet": 16,
+      "padMobile": 16
+    }
+  },
+  "menuItemTypes": [
+    "page",
+    "post",
+    "inventory",
+    "location",
+    "url",
+    "label"
+  ],
+  "maxMenuDepth": 3,
+  "conditionTypes": [
+    {
+      "id": "entireSite",
+      "label": "Entire site",
+      "description": "Every page and post, unless something more specific matches.",
+      "ref": null,
+      "specificity": 100
+    },
+    {
+      "id": "allPages",
+      "label": "All pages",
+      "description": "Every page.",
+      "ref": null,
+      "specificity": 200
+    },
+    {
+      "id": "allPosts",
+      "label": "All posts",
+      "description": "Each individual blog post page — not the list of posts.",
+      "ref": null,
+      "specificity": 200
+    },
+    {
+      "id": "blog",
+      "label": "Blog index",
+      "description": "Only the page that lists your posts (/blog) — individual posts are \"All posts\".",
+      "ref": null,
+      "specificity": 300
+    },
+    {
+      "id": "inventory",
+      "label": "Inventory",
+      "description": "Live inventory browse and detail pages, and the parts catalogue.",
+      "ref": null,
+      "specificity": 300
+    },
+    {
+      "id": "parts",
+      "label": "Parts",
+      "description": "The parts catalogue only. Without this, parts pages use the Inventory template.",
+      "ref": null,
+      "specificity": 350
+    },
+    {
+      "id": "allLocations",
+      "label": "Location pages",
+      "description": "Every page built from the one-page-per-location template. Generated slugs do not exist until a location does, so a specific-page condition cannot reach them.",
+      "ref": null,
+      "specificity": 300
+    },
+    {
+      "id": "pageGroup",
+      "label": "A group of pages",
+      "description": "Every page tagged with one group.",
+      "ref": "group",
+      "specificity": 400
+    },
+    {
+      "id": "page",
+      "label": "A specific page",
+      "description": "",
+      "ref": "page",
+      "specificity": 500
+    },
+    {
+      "id": "post",
+      "label": "A specific post",
+      "description": "",
+      "ref": "post",
+      "specificity": 500
+    },
+    {
+      "id": "location",
+      "label": "One location’s page",
+      "description": "The generated page for a single location, by its slug.",
+      "ref": "location",
+      "specificity": 500
+    }
+  ],
+  "rowPresets": [
+    {
+      "id": "one",
+      "label": "One column",
+      "spans": [
+        12
+      ]
+    },
+    {
+      "id": "two",
+      "label": "Two columns",
+      "spans": [
+        6,
+        6
+      ]
+    },
+    {
+      "id": "three",
+      "label": "Three columns",
+      "spans": [
+        4,
+        4,
+        4
+      ]
+    },
+    {
+      "id": "four",
+      "label": "Four columns",
+      "spans": [
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    {
+      "id": "left-wide",
+      "label": "Two thirds + a third",
+      "spans": [
+        8,
+        4
+      ]
+    },
+    {
+      "id": "right-wide",
+      "label": "A third + two thirds",
+      "spans": [
+        4,
+        8
+      ]
+    },
+    {
+      "id": "sidebar-left",
+      "label": "Sidebar + content",
+      "spans": [
+        3,
+        9
+      ]
+    },
+    {
+      "id": "sidebar-right",
+      "label": "Content + sidebar",
+      "spans": [
+        9,
+        3
+      ]
+    }
+  ],
+  "widgetGroups": [
+    {
+      "id": "basic",
+      "label": "Basic"
+    },
+    {
+      "id": "navigation",
+      "label": "Navigation"
+    },
+    {
+      "id": "forms",
+      "label": "Forms"
+    },
+    {
+      "id": "dynamic",
+      "label": "Dealer data"
+    },
+    {
+      "id": "prebuilt",
+      "label": "Prebuilt sections"
+    },
+    {
+      "id": "custom",
+      "label": "This site"
+    }
+  ],
+  "staticWidgets": [
+    "locations-map",
+    "locations-pinmap",
+    "location-photo",
+    "staff",
+    "faq",
+    "phone-numbers",
+    "hours",
+    "inventory-carousel",
+    "inventory-search",
+    "form"
+  ],
+  "customWidgetPropTypes": [
+    "text",
+    "textarea",
+    "richtext",
+    "url",
+    "image",
+    "number",
+    "boolean",
+    "select",
+    "color",
+    "list"
+  ],
+  "componentPropTypes": [
+    "text",
+    "textarea",
+    "richtext",
+    "url",
+    "image",
+    "number",
+    "boolean",
+    "select",
+    "color",
+    "list"
+  ],
+  "dataSources": [
+    {
+      "id": "locations",
+      "label": "Locations",
+      "description": "Every active rooftop, from Admin → Locations. Opening a branch adds a card to every list built on this.",
+      "widget": "locations-map",
+      "path": "locations",
+      "match": "slug",
+      "config": [
+        "locationSlug",
+        "excludeSlug",
+        "pagePathPrefix"
+      ],
+      "fields": [
+        {
+          "key": "id",
+          "type": "text",
+          "label": "Id"
+        },
+        {
+          "key": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "key": "subtitle",
+          "type": "text",
+          "label": "Trading name"
+        },
+        {
+          "key": "slug",
+          "type": "text",
+          "label": "Slug"
+        },
+        {
+          "key": "href",
+          "type": "url",
+          "label": "Page link"
+        },
+        {
+          "key": "streetAddress",
+          "type": "text",
+          "label": "Street address"
+        },
+        {
+          "key": "city",
+          "type": "text",
+          "label": "City"
+        },
+        {
+          "key": "region",
+          "type": "text",
+          "label": "State / region"
+        },
+        {
+          "key": "postalCode",
+          "type": "text",
+          "label": "Postal code"
+        },
+        {
+          "key": "country",
+          "type": "text",
+          "label": "Country"
+        },
+        {
+          "key": "latitude",
+          "type": "number",
+          "label": "Latitude"
+        },
+        {
+          "key": "longitude",
+          "type": "number",
+          "label": "Longitude"
+        },
+        {
+          "key": "phone",
+          "type": "text",
+          "label": "Phone"
+        },
+        {
+          "key": "phoneUrl",
+          "type": "url",
+          "label": "Phone link"
+        },
+        {
+          "key": "email",
+          "type": "text",
+          "label": "Email"
+        },
+        {
+          "key": "mapUrl",
+          "type": "url",
+          "label": "Directions link"
+        },
+        {
+          "key": "num",
+          "type": "text",
+          "label": "Position in the list"
+        },
+        {
+          "key": "brands",
+          "type": "text",
+          "label": "Brands carried"
+        },
+        {
+          "key": "services",
+          "type": "text",
+          "label": "Services offered"
+        },
+        {
+          "key": "perks",
+          "type": "text",
+          "label": "Service options"
+        },
+        {
+          "key": "brandKeys",
+          "type": "text",
+          "label": "Brand keys (for filtering)"
+        },
+        {
+          "key": "perkKeys",
+          "type": "text",
+          "label": "Service option keys (for filtering)"
+        },
+        {
+          "key": "perk1",
+          "type": "text",
+          "label": "First service option"
+        },
+        {
+          "key": "perk2",
+          "type": "text",
+          "label": "Second service option"
+        },
+        {
+          "key": "perk3",
+          "type": "text",
+          "label": "Third service option"
+        },
+        {
+          "key": "departments",
+          "type": "text",
+          "label": "Departments"
+        },
+        {
+          "key": "hours",
+          "type": "text",
+          "label": "Opening hours"
+        },
+        {
+          "key": "phone2",
+          "type": "text",
+          "label": "Second phone"
+        },
+        {
+          "key": "phone2Url",
+          "type": "url",
+          "label": "Second phone link"
+        },
+        {
+          "key": "phone3",
+          "type": "text",
+          "label": "Third phone"
+        },
+        {
+          "key": "phone3Url",
+          "type": "url",
+          "label": "Third phone link"
+        },
+        {
+          "key": "group",
+          "type": "text",
+          "label": "Group"
+        },
+        {
+          "key": "groupKey",
+          "type": "text",
+          "label": "Group key (for filtering)"
+        },
+        {
+          "key": "photo",
+          "type": "image",
+          "label": "Photo"
+        },
+        {
+          "key": "banner",
+          "type": "image",
+          "label": "Page banner"
+        },
+        {
+          "key": "brandRows",
+          "type": "list",
+          "label": "Brands (one row each)",
+          "fields": [
+            {
+              "key": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "key": "key",
+              "type": "text",
+              "label": "Filter value"
+            }
+          ]
+        },
+        {
+          "key": "serviceRows",
+          "type": "list",
+          "label": "Services (one row each)",
+          "fields": [
+            {
+              "key": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "key": "description",
+              "type": "text",
+              "label": "Description"
+            }
+          ]
+        },
+        {
+          "key": "perkRows",
+          "type": "list",
+          "label": "Service options (one row each)",
+          "fields": [
+            {
+              "key": "label",
+              "type": "text",
+              "label": "Label"
+            },
+            {
+              "key": "key",
+              "type": "text",
+              "label": "Filter value"
+            }
+          ]
+        },
+        {
+          "key": "departmentRows",
+          "type": "list",
+          "label": "Departments (one row each)",
+          "fields": [
+            {
+              "key": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "key": "key",
+              "type": "text",
+              "label": "Code"
+            },
+            {
+              "key": "phone",
+              "type": "text",
+              "label": "Phone"
+            },
+            {
+              "key": "phoneUrl",
+              "type": "url",
+              "label": "Phone link"
+            },
+            {
+              "key": "email",
+              "type": "text",
+              "label": "Email"
+            },
+            {
+              "key": "hours",
+              "type": "text",
+              "label": "Hours, summarised"
+            }
+          ]
+        },
+        {
+          "key": "hoursRows",
+          "type": "list",
+          "label": "Opening hours, by department",
+          "fields": [
+            {
+              "key": "department",
+              "type": "text",
+              "label": "Department"
+            },
+            {
+              "key": "key",
+              "type": "text",
+              "label": "Code"
+            },
+            {
+              "key": "summary",
+              "type": "text",
+              "label": "Whole week, in one line"
+            },
+            {
+              "key": "days",
+              "type": "list",
+              "label": "Days",
+              "fields": [
+                {
+                  "key": "day",
+                  "type": "text",
+                  "label": "Day"
+                },
+                {
+                  "key": "hours",
+                  "type": "text",
+                  "label": "Open–close, or Closed"
+                },
+                {
+                  "key": "opensAt",
+                  "type": "text",
+                  "label": "Opens at"
+                },
+                {
+                  "key": "closesAt",
+                  "type": "text",
+                  "label": "Closes at"
+                },
+                {
+                  "key": "closed",
+                  "type": "boolean",
+                  "label": "Closed that day"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "location-brands",
+      "label": "Brands carried (filter options)",
+      "description": "One row per brand at least one rooftop carries, from Admin → Locations → Brands.",
+      "widget": "locations-map",
+      "path": "brandFacets",
+      "match": "value",
+      "config": [
+        "locationSlug"
+      ],
+      "fields": [
+        {
+          "key": "label",
+          "type": "text",
+          "label": "Label"
+        },
+        {
+          "key": "value",
+          "type": "text",
+          "label": "Filter value"
+        }
+      ]
+    },
+    {
+      "id": "location-service-options",
+      "label": "Service options (filter options)",
+      "description": "One row per service option at least one rooftop offers, from Admin → Locations → Profile.",
+      "widget": "locations-map",
+      "path": "perkFacets",
+      "match": "value",
+      "config": [
+        "locationSlug"
+      ],
+      "fields": [
+        {
+          "key": "label",
+          "type": "text",
+          "label": "Label"
+        },
+        {
+          "key": "value",
+          "type": "text",
+          "label": "Filter value"
+        }
+      ]
+    },
+    {
+      "id": "staff",
+      "label": "Staff",
+      "description": "Sales and service contacts, from the team directory.",
+      "widget": "staff",
+      "path": "staff",
+      "match": "name",
+      "config": [
+        "locationSlug",
+        "departmentCode"
+      ],
+      "fields": [
+        {
+          "key": "name",
+          "type": "text",
+          "label": "Name"
+        },
+        {
+          "key": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "key": "phone",
+          "type": "text",
+          "label": "Phone"
+        },
+        {
+          "key": "phoneUrl",
+          "type": "url",
+          "label": "Phone link"
+        },
+        {
+          "key": "photo",
+          "type": "image",
+          "label": "Photo"
+        }
+      ]
+    }
+  ],
+  "styleBuckets": [
+    "base",
+    "tablet",
+    "mobile"
+  ],
+  "styleBreakpoints": {
+    "base": null,
+    "tablet": "(max-width: 1100px)",
+    "mobile": "(max-width: 640px)"
+  },
+  "styleGroups": [
+    {
+      "key": "layout",
+      "label": "Layout"
+    },
+    {
+      "key": "position",
+      "label": "Position & layering"
+    },
+    {
+      "key": "sizing",
+      "label": "Size"
+    },
+    {
+      "key": "spacing",
+      "label": "Spacing"
+    },
+    {
+      "key": "appearance",
+      "label": "Appearance"
+    },
+    {
+      "key": "border",
+      "label": "Border"
+    },
+    {
+      "key": "text",
+      "label": "Text"
+    },
+    {
+      "key": "button",
+      "label": "Buttons"
+    },
+    {
+      "key": "motion",
+      "label": "Motion"
+    },
+    {
+      "key": "visibility",
+      "label": "Visibility"
+    }
+  ],
+  "styleFields": {
+    "display": {
+      "css": "display",
+      "label": "Display",
+      "group": "layout",
+      "options": [
+        "block",
+        "flex",
+        "inline-flex",
+        "grid",
+        "inline-block"
+      ]
+    },
+    "gridColumns": {
+      "css": "grid-template-columns",
+      "label": "Grid columns",
+      "group": "layout",
+      "hint": "A column list such as 1fr 1fr, 240px 200px 1fr, or 1.4fr 1fr 1fr 1fr."
+    },
+    "flexDirection": {
+      "css": "flex-direction",
+      "label": "Direction",
+      "group": "layout",
+      "options": [
+        "row",
+        "row-reverse",
+        "column",
+        "column-reverse"
+      ]
+    },
+    "flexWrap": {
+      "css": "flex-wrap",
+      "label": "Wrap",
+      "group": "layout",
+      "options": [
+        "wrap",
+        "nowrap"
+      ]
+    },
+    "alignItems": {
+      "css": "align-items",
+      "label": "Align",
+      "group": "layout",
+      "options": [
+        "start",
+        "center",
+        "end",
+        "stretch",
+        "baseline"
+      ]
+    },
+    "justifyContent": {
+      "css": "justify-content",
+      "label": "Justify",
+      "group": "layout",
+      "options": [
+        "start",
+        "center",
+        "end",
+        "between",
+        "around",
+        "evenly"
+      ]
+    },
+    "flexBasis": {
+      "css": "flex-basis",
+      "label": "Basis",
+      "group": "layout"
+    },
+    "flexGrow": {
+      "css": "flex-grow",
+      "label": "Grow",
+      "group": "layout"
+    },
+    "flexShrink": {
+      "css": "flex-shrink",
+      "label": "Shrink",
+      "group": "layout"
+    },
+    "order": {
+      "css": "order",
+      "label": "Order",
+      "group": "layout"
+    },
+    "gap": {
+      "css": "gap",
+      "label": "Gap",
+      "group": "layout"
+    },
+    "rowGap": {
+      "css": "row-gap",
+      "label": "Row gap",
+      "group": "layout"
+    },
+    "columnGap": {
+      "css": "column-gap",
+      "label": "Column gap",
+      "group": "layout"
+    },
+    "position": {
+      "css": "position",
+      "label": "Position",
+      "group": "position",
+      "options": [
+        "static",
+        "relative",
+        "absolute",
+        "sticky"
+      ]
+    },
+    "inset": {
+      "css": "inset",
+      "label": "Inset (all sides)",
+      "group": "position"
+    },
+    "top": {
+      "css": "top",
+      "label": "Top",
+      "group": "position"
+    },
+    "right": {
+      "css": "right",
+      "label": "Right",
+      "group": "position"
+    },
+    "bottom": {
+      "css": "bottom",
+      "label": "Bottom",
+      "group": "position"
+    },
+    "left": {
+      "css": "left",
+      "label": "Left",
+      "group": "position"
+    },
+    "zIndex": {
+      "css": "z-index",
+      "label": "Layer",
+      "group": "position",
+      "hint": "0–60. Site chrome sits at 70 and above."
+    },
+    "overflow": {
+      "css": "overflow",
+      "label": "Overflow",
+      "group": "position",
+      "options": [
+        "visible",
+        "hidden",
+        "auto",
+        "clip"
+      ]
+    },
+    "overflowX": {
+      "css": "overflow-x",
+      "label": "Overflow across",
+      "group": "position",
+      "options": [
+        "visible",
+        "hidden",
+        "auto",
+        "clip"
+      ]
+    },
+    "overflowY": {
+      "css": "overflow-y",
+      "label": "Overflow down",
+      "group": "position",
+      "options": [
+        "visible",
+        "hidden",
+        "auto",
+        "clip"
+      ]
+    },
+    "width": {
+      "css": "width",
+      "label": "Width",
+      "group": "sizing"
+    },
+    "maxWidth": {
+      "css": "max-width",
+      "label": "Max width",
+      "group": "sizing"
+    },
+    "minHeight": {
+      "css": "min-height",
+      "label": "Min height",
+      "group": "sizing"
+    },
+    "height": {
+      "css": "height",
+      "label": "Height",
+      "group": "sizing"
+    },
+    "aspectRatio": {
+      "css": "aspect-ratio",
+      "label": "Aspect ratio",
+      "group": "sizing",
+      "hint": "Width / height, such as 16/9, 4/3 or 1/1. Keeps cards the same shape whatever the image."
+    },
+    "paddingTop": {
+      "css": "padding-top",
+      "label": "Padding top",
+      "group": "spacing"
+    },
+    "paddingRight": {
+      "css": "padding-right",
+      "label": "Padding right",
+      "group": "spacing"
+    },
+    "paddingBottom": {
+      "css": "padding-bottom",
+      "label": "Padding bottom",
+      "group": "spacing"
+    },
+    "paddingLeft": {
+      "css": "padding-left",
+      "label": "Padding left",
+      "group": "spacing"
+    },
+    "marginTop": {
+      "css": "margin-top",
+      "label": "Margin top",
+      "group": "spacing"
+    },
+    "marginBottom": {
+      "css": "margin-bottom",
+      "label": "Margin bottom",
+      "group": "spacing"
+    },
+    "marginLeft": {
+      "css": "margin-left",
+      "label": "Margin left",
+      "group": "spacing"
+    },
+    "marginRight": {
+      "css": "margin-right",
+      "label": "Margin right",
+      "group": "spacing"
+    },
+    "background": {
+      "css": "background",
+      "label": "Background",
+      "group": "appearance",
+      "hint": "A colour, or #000@60% for a translucent scrim."
+    },
+    "backgroundImage": {
+      "css": "background-image",
+      "label": "Background image",
+      "group": "appearance"
+    },
+    "backgroundSize": {
+      "css": "background-size",
+      "label": "Background size",
+      "group": "appearance",
+      "options": [
+        "cover",
+        "contain",
+        "auto"
+      ]
+    },
+    "backgroundPosition": {
+      "css": "background-position",
+      "label": "Background position",
+      "group": "appearance",
+      "options": [
+        "center",
+        "top",
+        "bottom",
+        "left",
+        "right",
+        "top left",
+        "top right",
+        "bottom left",
+        "bottom right"
+      ]
+    },
+    "backgroundRepeat": {
+      "css": "background-repeat",
+      "label": "Background repeat",
+      "group": "appearance",
+      "options": [
+        "no-repeat",
+        "repeat",
+        "repeat-x",
+        "repeat-y"
+      ]
+    },
+    "objectFit": {
+      "css": "object-fit",
+      "label": "Image fit",
+      "group": "appearance",
+      "options": [
+        "cover",
+        "contain",
+        "fill",
+        "none",
+        "scale-down"
+      ]
+    },
+    "objectPosition": {
+      "css": "object-position",
+      "label": "Image focus",
+      "group": "appearance",
+      "options": [
+        "center",
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ]
+    },
+    "radius": {
+      "css": "border-radius",
+      "label": "Corner radius",
+      "group": "appearance"
+    },
+    "radiusTopLeft": {
+      "css": "border-top-left-radius",
+      "label": "Radius top left",
+      "group": "appearance"
+    },
+    "radiusTopRight": {
+      "css": "border-top-right-radius",
+      "label": "Radius top right",
+      "group": "appearance"
+    },
+    "radiusBottomRight": {
+      "css": "border-bottom-right-radius",
+      "label": "Radius bottom right",
+      "group": "appearance"
+    },
+    "radiusBottomLeft": {
+      "css": "border-bottom-left-radius",
+      "label": "Radius bottom left",
+      "group": "appearance"
+    },
+    "shadow": {
+      "css": "box-shadow",
+      "label": "Shadow",
+      "group": "appearance",
+      "options": [
+        "none",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ]
+    },
+    "opacity": {
+      "css": "opacity",
+      "label": "Opacity (%)",
+      "group": "appearance"
+    },
+    "borderWidth": {
+      "css": "border-width",
+      "label": "Border width",
+      "group": "border"
+    },
+    "borderTopWidth": {
+      "css": "border-top-width",
+      "label": "Border top",
+      "group": "border"
+    },
+    "borderRightWidth": {
+      "css": "border-right-width",
+      "label": "Border right",
+      "group": "border"
+    },
+    "borderBottomWidth": {
+      "css": "border-bottom-width",
+      "label": "Border bottom",
+      "group": "border"
+    },
+    "borderLeftWidth": {
+      "css": "border-left-width",
+      "label": "Border left",
+      "group": "border"
+    },
+    "borderStyle": {
+      "css": "border-style",
+      "label": "Border style",
+      "group": "border",
+      "options": [
+        "solid",
+        "dashed",
+        "dotted"
+      ]
+    },
+    "borderColor": {
+      "css": "border-color",
+      "label": "Border colour",
+      "group": "border"
+    },
+    "textColor": {
+      "css": "color",
+      "label": "Text colour",
+      "group": "text"
+    },
+    "textAlign": {
+      "css": "text-align",
+      "label": "Text align",
+      "group": "text"
+    },
+    "fontSize": {
+      "css": "font-size",
+      "label": "Font size",
+      "group": "text"
+    },
+    "fontWeight": {
+      "css": "font-weight",
+      "label": "Font weight",
+      "group": "text",
+      "options": [
+        "300",
+        "400",
+        "500",
+        "600",
+        "700",
+        "800",
+        "900"
+      ]
+    },
+    "lineHeight": {
+      "css": "line-height",
+      "label": "Line height",
+      "group": "text"
+    },
+    "letterSpacing": {
+      "css": "letter-spacing",
+      "label": "Letter spacing",
+      "group": "text"
+    },
+    "textTransform": {
+      "css": "text-transform",
+      "label": "Text case",
+      "group": "text",
+      "options": [
+        "none",
+        "uppercase",
+        "lowercase",
+        "capitalize"
+      ]
+    },
+    "whiteSpace": {
+      "css": "white-space",
+      "label": "Wrapping",
+      "group": "text",
+      "options": [
+        "normal",
+        "nowrap"
+      ]
+    },
+    "buttonBackground": {
+      "css": "background-color",
+      "label": "Button fill",
+      "group": "button",
+      "hint": "Applies to every button inside this node, whatever variant it uses."
+    },
+    "buttonTextColor": {
+      "css": "color",
+      "label": "Button text",
+      "group": "button"
+    },
+    "buttonBorderColor": {
+      "css": "border-color",
+      "label": "Button border",
+      "group": "button"
+    },
+    "buttonRadius": {
+      "css": "border-radius",
+      "label": "Button corners",
+      "group": "button"
+    },
+    "translateX": {
+      "css": "transform",
+      "label": "Move across",
+      "group": "motion",
+      "composes": true
+    },
+    "translateY": {
+      "css": "transform",
+      "label": "Move down",
+      "group": "motion",
+      "composes": true
+    },
+    "scale": {
+      "css": "transform",
+      "label": "Scale",
+      "group": "motion",
+      "composes": true
+    },
+    "rotate": {
+      "css": "transform",
+      "label": "Rotate",
+      "group": "motion",
+      "composes": true
+    },
+    "transition": {
+      "css": "transition",
+      "label": "Transition",
+      "group": "motion",
+      "options": [
+        "none",
+        "fast",
+        "base",
+        "slow"
+      ]
+    },
+    "hide": {
+      "css": "display",
+      "label": "Hide",
+      "group": "visibility"
+    }
+  },
+  "behaviours": [
+    "carousel",
+    "filter",
+    "dropdown",
+    "drawer",
+    "rotator",
+    "scrollstate",
+    "dependentselect",
+    "mapsync"
+  ],
+  "behaviourParts": {
+    "carousel": {
+      "track": {
+        "label": "Rail",
+        "hint": "The scrolling strip. Defaults to the node itself.",
+        "optional": true
+      },
+      "slide": {
+        "label": "Slide",
+        "hint": "Each item. Must be a direct child of the rail.",
+        "optional": false,
+        "many": true
+      },
+      "prev": {
+        "label": "Previous button",
+        "optional": true
+      },
+      "next": {
+        "label": "Next button",
+        "optional": true
+      },
+      "dots": {
+        "label": "Dots container",
+        "hint": "Leave it empty — one dot per slide is generated.",
+        "optional": true
+      }
+    },
+    "rotator": {
+      "slide": {
+        "label": "Slide",
+        "optional": false,
+        "many": true
+      },
+      "live": {
+        "label": "Live region",
+        "hint": "Where changes are announced. Defaults to the node.",
+        "optional": true
+      },
+      "prev": {
+        "label": "Previous button",
+        "optional": true
+      },
+      "next": {
+        "label": "Next button",
+        "optional": true
+      },
+      "dots": {
+        "label": "Dots container",
+        "optional": true
+      }
+    },
+    "filter": {
+      "control": {
+        "label": "Filter control",
+        "hint": "A button or input carrying the value to match.",
+        "optional": false,
+        "many": true
+      },
+      "item": {
+        "label": "Filterable item",
+        "optional": false,
+        "many": true
+      },
+      "count": {
+        "label": "Result count",
+        "optional": true
+      },
+      "empty": {
+        "label": "\"No results\" message",
+        "optional": true
+      }
+    },
+    "dropdown": {
+      "trigger": {
+        "label": "Trigger",
+        "optional": false,
+        "many": true
+      },
+      "panel": {
+        "label": "Panel",
+        "optional": false,
+        "many": true
+      }
+    },
+    "drawer": {
+      "toggle": {
+        "label": "Toggle button",
+        "optional": false
+      },
+      "panel": {
+        "label": "Panel",
+        "optional": false
+      },
+      "close": {
+        "label": "Close button",
+        "optional": true,
+        "many": true
+      }
+    },
+    "scrollstate": {
+      "totop": {
+        "label": "Back-to-top button",
+        "optional": true,
+        "many": true
+      }
+    },
+    "dependentselect": {
+      "parent": {
+        "label": "Parent select",
+        "optional": false,
+        "many": true
+      },
+      "child": {
+        "label": "Dependent select",
+        "optional": false,
+        "many": true
+      }
+    },
+    "mapsync": {
+      "frame": {
+        "label": "Map iframe",
+        "hint": "Defaults to the first iframe inside.",
+        "optional": true
+      }
+    }
+  },
+  "behaviourOptions": {
+    "carousel": {
+      "label": "Accessible name for the rail.",
+      "perMove": "Slides advanced per arrow press."
+    },
+    "rotator": {
+      "autoplay": "Milliseconds between slides. Omit to require a click."
+    },
+    "filter": {
+      "match": "How a control value is compared: \"exact\" or \"includes\"."
+    },
+    "dropdown": {
+      "trigger": "\"hover\" or \"click\".",
+      "closeOnOutside": "Close when clicking elsewhere."
+    },
+    "drawer": {
+      "lockScroll": "Freeze the page behind the panel."
+    },
+    "scrollstate": {
+      "after": "Pixels scrolled before the state turns on.",
+      "until": "Selector to stop at."
+    },
+    "dependentselect": {
+      "source": "Name of the option map published on window."
+    },
+    "mapsync": {
+      "message": "Template for the address sent to the map."
+    }
+  },
+  "universalProps": {
+    "anchor": {
+      "type": "string",
+      "description": "An id, so a link can jump to this node. Lower-case, no spaces."
+    },
+    "scope": {
+      "type": "string",
+      "description": "A token set name, to restyle this node and everything inside it."
+    },
+    "repeat": {
+      "type": "string",
+      "description": "Inside a designed component only: the key of a list prop. This node renders once per item, with that item's fields available to {{bindings}} inside it."
+    },
+    "behaviour": {
+      "type": "string",
+      "description": "Client behaviour this node performs. Its parts go on nodes inside.",
+      "enum": [
+        "",
+        "carousel",
+        "filter",
+        "dropdown",
+        "drawer",
+        "rotator",
+        "scrollstate",
+        "dependentselect",
+        "mapsync"
+      ],
+      "default": ""
+    },
+    "behaviourOptions": {
+      "type": "string",
+      "description": "Settings for the behaviour, as a JSON object. Ignored if it does not parse."
+    },
+    "part": {
+      "type": "string",
+      "description": "The role this node plays in the nearest ancestor behaviour. Space-separate to play several at once — \"item control\" is a drilldown's middle column, filtered by the level above and filtering the level below. One of: child, close, control, count, dot, dots, empty, frame, item, live, next, panel, parent, prev, slide, toggle, totop, track, trigger.",
+      "pattern": "^$|^(?:child|close|control|count|dot|dots|empty|frame|item|live|next|panel|parent|prev|slide|toggle|totop|track|trigger)(?: (?:child|close|control|count|dot|dots|empty|frame|item|live|next|panel|parent|prev|slide|toggle|totop|track|trigger))*$",
+      "default": ""
+    }
+  },
+  "layout": [
+    {
+      "id": "section",
+      "label": "Section",
+      "category": "layout",
+      "accepts": [
+        "row",
+        "widget"
+      ],
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "string",
+            "description": "How wide the content inside runs. bleed-left/bleed-right align one side to the page grid while the other side runs to the screen edge — the split-section pattern where copy stays on the grid and the photo bleeds.",
+            "enum": [
+              "boxed",
+              "wide",
+              "full",
+              "bleed-left",
+              "bleed-right"
+            ],
+            "default": "boxed"
+          },
+          "background": {
+            "type": "string",
+            "description": "Surface behind this section.",
+            "enum": [
+              "none",
+              "paper",
+              "card",
+              "ink",
+              "accent"
+            ],
+            "default": "none"
+          },
+          "backgroundVideo": {
+            "type": "object",
+            "description": "A muted, looping clip behind this section's content — the hero-with-video pattern. An uploaded file only: an embed cannot be a background, because a third-party iframe brings its own chrome and swallows every click. Give it a `background` as well, so the section still reads before the clip has loaded and when a visitor has asked for reduced motion.",
+            "properties": {
+              "src": {
+                "type": "string",
+                "description": "Public video URL from the media library (mp4/webm)."
+              },
+              "poster": {
+                "type": "string",
+                "description": "The frame shown before the clip loads, when motion is reduced, and on the editing canvas. Effectively required: without it the band is empty in all three."
+              }
+            },
+            "required": [
+              "src"
+            ]
+          },
+          "paddingY": {
+            "type": "integer",
+            "description": "Vertical padding, on the spacing scale.",
+            "minimum": 0,
+            "maximum": 10,
+            "default": 7
+          },
+          "anchor": {
+            "type": "string",
+            "description": "An id, so a link can jump here. Lower-case, no spaces."
+          },
+          "minHeight": {
+            "type": "string",
+            "description": "Minimum height.",
+            "enum": [
+              "auto",
+              "half",
+              "full"
+            ],
+            "default": "auto"
+          },
+          "align": {
+            "type": "string",
+            "description": "Vertical alignment when the section is taller than its content.",
+            "enum": [
+              "start",
+              "center",
+              "end"
+            ],
+            "default": "start"
+          },
+          "behaviour": {
+            "type": "string",
+            "description": "Client behaviour this node performs. Its parts go on nodes inside.",
+            "enum": [
+              "",
+              "carousel",
+              "filter",
+              "dropdown",
+              "drawer",
+              "rotator",
+              "scrollstate",
+              "dependentselect",
+              "mapsync"
+            ],
+            "default": ""
+          },
+          "behaviourOptions": {
+            "type": "string",
+            "description": "Settings for the behaviour, as a JSON object. Ignored if it does not parse."
+          },
+          "part": {
+            "type": "string",
+            "description": "The role this node plays in the nearest ancestor behaviour. Space-separate to play several at once — \"item control\" is a drilldown's middle column, filtered by the level above and filtering the level below. One of: child, close, control, count, dot, dots, empty, frame, item, live, next, panel, parent, prev, slide, toggle, totop, track, trigger.",
+            "pattern": "^$|^(?:child|close|control|count|dot|dots|empty|frame|item|live|next|panel|parent|prev|slide|toggle|totop|track|trigger)(?: (?:child|close|control|count|dot|dots|empty|frame|item|live|next|panel|parent|prev|slide|toggle|totop|track|trigger))*$",
+            "default": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "row",
+      "label": "Row",
+      "category": "layout",
+      "accepts": [
+        "column"
+      ],
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "gap": {
+            "type": "integer",
+            "description": "Space between columns, on the spacing scale.",
+            "minimum": 0,
+            "maximum": 10,
+            "default": 6
+          },
+          "align": {
+            "type": "string",
+            "description": "How columns line up vertically.",
+            "enum": [
+              "stretch",
+              "start",
+              "center",
+              "end"
+            ],
+            "default": "stretch"
+          },
+          "stackOn": {
+            "type": "string",
+            "description": "Width at which the columns stack.",
+            "enum": [
+              "mobile",
+              "tablet",
+              "never"
+            ],
+            "default": "mobile"
+          },
+          "reverseStacked": {
+            "type": "boolean",
+            "description": "When stacked, show the columns in reverse order."
+          },
+          "behaviour": {
+            "type": "string",
+            "description": "Client behaviour this node performs. Its parts go on nodes inside.",
+            "enum": [
+              "",
+              "carousel",
+              "filter",
+              "dropdown",
+              "drawer",
+              "rotator",
+              "scrollstate",
+              "dependentselect",
+              "mapsync"
+            ],
+            "default": ""
+          },
+          "behaviourOptions": {
+            "type": "string",
+            "description": "Settings for the behaviour, as a JSON object. Ignored if it does not parse."
+          },
+          "part": {
+            "type": "string",
+            "description": "The role this node plays in the nearest ancestor behaviour. Space-separate to play several at once — \"item control\" is a drilldown's middle column, filtered by the level above and filtering the level below. One of: child, close, control, count, dot, dots, empty, frame, item, live, next, panel, parent, prev, slide, toggle, totop, track, trigger.",
+            "pattern": "^$|^(?:child|close|control|count|dot|dots|empty|frame|item|live|next|panel|parent|prev|slide|toggle|totop|track|trigger)(?: (?:child|close|control|count|dot|dots|empty|frame|item|live|next|panel|parent|prev|slide|toggle|totop|track|trigger))*$",
+            "default": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "column",
+      "label": "Column",
+      "category": "layout",
+      "accepts": [
+        "row",
+        "widget"
+      ],
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "span": {
+            "type": "integer",
+            "description": "How many of the 12 grid columns this takes.",
+            "minimum": 1,
+            "maximum": 12,
+            "default": 6
+          },
+          "align": {
+            "type": "string",
+            "description": "Vertical alignment of this column within the row.",
+            "enum": [
+              "auto",
+              "start",
+              "center",
+              "end"
+            ],
+            "default": "auto"
+          },
+          "padding": {
+            "type": "integer",
+            "description": "Inner padding, on the spacing scale.",
+            "minimum": 0,
+            "maximum": 10,
+            "default": 0
+          },
+          "background": {
+            "type": "string",
+            "description": "Surface behind this column.",
+            "enum": [
+              "none",
+              "paper",
+              "card",
+              "ink",
+              "accent"
+            ],
+            "default": "none"
+          },
+          "behaviour": {
+            "type": "string",
+            "description": "Client behaviour this node performs. Its parts go on nodes inside.",
+            "enum": [
+              "",
+              "carousel",
+              "filter",
+              "dropdown",
+              "drawer",
+              "rotator",
+              "scrollstate",
+              "dependentselect",
+              "mapsync"
+            ],
+            "default": ""
+          },
+          "behaviourOptions": {
+            "type": "string",
+            "description": "Settings for the behaviour, as a JSON object. Ignored if it does not parse."
+          },
+          "part": {
+            "type": "string",
+            "description": "The role this node plays in the nearest ancestor behaviour. Space-separate to play several at once — \"item control\" is a drilldown's middle column, filtered by the level above and filtering the level below. One of: child, close, control, count, dot, dots, empty, frame, item, live, next, panel, parent, prev, slide, toggle, totop, track, trigger.",
+            "pattern": "^$|^(?:child|close|control|count|dot|dots|empty|frame|item|live|next|panel|parent|prev|slide|toggle|totop|track|trigger)(?: (?:child|close|control|count|dot|dots|empty|frame|item|live|next|panel|parent|prev|slide|toggle|totop|track|trigger))*$",
+            "default": ""
+          }
+        }
+      }
+    },
+    {
+      "id": "contentArea",
+      "label": "Content area",
+      "category": "layout",
+      "accepts": [],
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "What this area is for, shown in the template editor.",
+            "default": "Page content"
+          }
+        }
+      }
+    },
+    {
+      "id": "sharedSection",
+      "label": "Shared section",
+      "category": "layout",
+      "accepts": [],
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "sectionId": {
+            "type": "string",
+            "description": "Which shared section to place, by id."
+          },
+          "values": {
+            "type": "object",
+            "description": "Content for this placement, keyed by the component's declared prop keys. Anything left out falls back to the prop's default, so a placement need only state what differs."
+          },
+          "snapshots": {
+            "type": "object",
+            "description": "Widget data resolved by the platform for this placement, keyed by the widget node's id inside the component. Never hand-written."
+          },
+          "data": {
+            "type": "object",
+            "description": "Rows resolved by the platform for each list prop this placement pointed at a data source, keyed by the prop key. Never hand-written."
+          }
+        },
+        "required": [
+          "sectionId"
+        ]
+      }
+    }
+  ],
+  "nesting": {
+    "root": {
+      "accepts": [
+        "section",
+        "row",
+        "contentArea",
+        "widget",
+        "sharedSection"
+      ]
+    },
+    "section": {
+      "accepts": [
+        "row",
+        "widget"
+      ]
+    },
+    "row": {
+      "accepts": [
+        "column"
+      ]
+    },
+    "column": {
+      "accepts": [
+        "row",
+        "widget"
+      ]
+    },
+    "contentArea": {
+      "accepts": []
+    },
+    "sharedSection": {
+      "accepts": []
+    }
+  },
+  "widgets": [
+    {
+      "id": "spacer",
+      "label": "Spacer",
+      "category": "basic",
+      "group": "basic",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "size": {
+            "type": "integer",
+            "description": "Step on the spacing scale.",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 6
+          }
+        }
+      }
+    },
+    {
+      "id": "divider",
+      "label": "Divider",
+      "category": "basic",
+      "group": "basic",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "id": "heading",
+      "label": "Heading",
+      "category": "basic",
+      "group": "basic",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The heading text."
+          },
+          "eyebrow": {
+            "type": "string",
+            "description": "Small label above the heading."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "align": {
+            "type": "string",
+            "description": "Text alignment.",
+            "enum": [
+              "left",
+              "center"
+            ],
+            "default": "left"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "text",
+      "label": "Text",
+      "category": "basic",
+      "group": "basic",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Body copy. Plain paragraphs separated by a blank line; inline <strong>, <em> and <a> are allowed."
+          },
+          "align": {
+            "type": "string",
+            "description": "Text alignment.",
+            "enum": [
+              "left",
+              "center"
+            ],
+            "default": "left"
+          },
+          "width": {
+            "type": "string",
+            "description": "Measure.",
+            "enum": [
+              "prose",
+              "full"
+            ],
+            "default": "prose"
+          }
+        },
+        "required": [
+          "text"
+        ]
+      }
+    },
+    {
+      "id": "image",
+      "label": "Image",
+      "category": "basic",
+      "group": "basic",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "object",
+            "description": "An uploaded image, referenced by public URL. Never a base64 data URI.",
+            "properties": {
+              "src": {
+                "type": "string",
+                "description": "Public image URL from the media library."
+              },
+              "alt": {
+                "type": "string",
+                "description": "Descriptive alternative text. Required for anything not decorative."
+              },
+              "width": {
+                "type": "integer",
+                "description": "Intrinsic width in pixels."
+              },
+              "height": {
+                "type": "integer",
+                "description": "Intrinsic height in pixels."
+              }
+            },
+            "required": [
+              "src",
+              "alt"
+            ]
+          },
+          "caption": {
+            "type": "string",
+            "description": "Optional caption shown under the image."
+          },
+          "width": {
+            "type": "string",
+            "description": "How wide the image sits.",
+            "enum": [
+              "prose",
+              "full"
+            ],
+            "default": "full"
+          },
+          "url": {
+            "type": "string",
+            "description": "Optional: where clicking the image goes."
+          }
+        },
+        "required": [
+          "image"
+        ]
+      }
+    },
+    {
+      "id": "video",
+      "label": "Video",
+      "category": "basic",
+      "group": "basic",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "video": {
+            "type": "object",
+            "description": "A video: either a file uploaded to the media library (mp4/webm), or a YouTube or Vimeo link. Anything that is not a recognised YouTube or Vimeo URL is treated as a file.",
+            "properties": {
+              "src": {
+                "type": "string",
+                "description": "Public video URL from the media library, or a YouTube/Vimeo page URL."
+              },
+              "poster": {
+                "type": "string",
+                "description": "Image shown before playback starts. Strongly recommended for an uploaded file: without it the block is a black rectangle until the visitor presses play, and the editing canvas has nothing to show at all. Ignored by YouTube and Vimeo, which bring their own."
+              },
+              "title": {
+                "type": "string",
+                "description": "Accessible title, read by screen readers and shown if the video cannot load."
+              }
+            },
+            "required": [
+              "src"
+            ]
+          },
+          "caption": {
+            "type": "string",
+            "description": "Optional caption shown under the video."
+          },
+          "width": {
+            "type": "string",
+            "description": "How wide the video sits.",
+            "enum": [
+              "prose",
+              "full"
+            ],
+            "default": "full"
+          },
+          "autoplay": {
+            "type": "boolean",
+            "description": "Start on load. Forces the clip muted, because no browser autoplays audio. Pair with `controls` off and `loop` on for an ambient clip."
+          },
+          "loop": {
+            "type": "boolean",
+            "description": "Restart when it ends."
+          },
+          "controls": {
+            "type": "boolean",
+            "description": "Show the player controls. On unless turned off."
+          }
+        },
+        "required": [
+          "video"
+        ]
+      }
+    },
+    {
+      "id": "buttons",
+      "label": "Buttons",
+      "category": "basic",
+      "group": "basic",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "Calls to action, in order.",
+            "items": {
+              "type": "object",
+              "description": "A call to action. Prefer `ctaId` referencing the dealer's Buttons library over an inline label/url — a library CTA keeps its label, destination and tagging consistent everywhere it appears.",
+              "properties": {
+                "ctaId": {
+                  "type": "string",
+                  "description": "Id of an entry in site/buttons.json."
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Inline label. Overrides the library label when both are set."
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Inline destination. Overrides the library destination."
+                },
+                "style": {
+                  "type": "string",
+                  "description": "Visual variant.",
+                  "enum": [
+                    "primary",
+                    "secondary",
+                    "link"
+                  ]
+                },
+                "intent": {
+                  "type": "string",
+                  "description": "Analytics intent, e.g. \"get-quote\". Defaults to the library value."
+                }
+              }
+            },
+            "maxItems": 3
+          },
+          "align": {
+            "type": "string",
+            "description": "Text alignment.",
+            "enum": [
+              "left",
+              "center"
+            ],
+            "default": "left"
+          }
+        },
+        "required": [
+          "items"
+        ]
+      }
+    },
+    {
+      "id": "list",
+      "label": "Feature list",
+      "category": "basic",
+      "group": "basic",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "Optional heading above the list."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "columns": {
+            "type": "integer",
+            "description": "Columns at desktop width.",
+            "minimum": 1,
+            "maximum": 4,
+            "default": 3
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "Item title."
+                },
+                "desc": {
+                  "type": "string",
+                  "description": "One or two supporting sentences."
+                }
+              },
+              "required": [
+                "label"
+              ]
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      }
+    },
+    {
+      "id": "customHtml",
+      "label": "Custom HTML",
+      "category": "basic",
+      "group": "basic",
+      "autoTagged": false,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "html": {
+            "type": "string",
+            "description": "Raw HTML fragment. No <script>, no document shell."
+          }
+        },
+        "required": [
+          "html"
+        ]
+      }
+    },
+    {
+      "id": "form",
+      "label": "Form",
+      "category": "forms",
+      "group": "forms",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "formId": {
+            "type": "string",
+            "description": "Id of a form in the dealer's Forms library (site/forms/<id>.json). Never invent form fields inline — reference a library form so routing, consent and validation stay in one place."
+          },
+          "heading": {
+            "type": "string",
+            "description": "Optional heading above the form."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "intro": {
+            "type": "string",
+            "description": "One short line under the heading."
+          }
+        },
+        "required": [
+          "formId"
+        ]
+      }
+    },
+    {
+      "id": "widget",
+      "label": "Widget",
+      "category": "dynamic",
+      "group": "dynamic",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "widget": {
+            "type": "string",
+            "description": "Widget id from the platform registry, e.g. \"locations-map\"."
+          },
+          "config": {
+            "type": "object",
+            "description": "Widget props, validated against that widget's own schema."
+          },
+          "snapshot": {
+            "type": "object",
+            "description": "Data resolved by the platform and committed into the page, so the facts are in the static HTML. Never hand-written."
+          }
+        },
+        "required": [
+          "widget"
+        ]
+      }
+    },
+    {
+      "id": "logo",
+      "label": "Logo",
+      "category": "navigation",
+      "group": "navigation",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "object",
+            "description": "An uploaded image, referenced by public URL. Never a base64 data URI.",
+            "properties": {
+              "src": {
+                "type": "string",
+                "description": "Public image URL from the media library."
+              },
+              "alt": {
+                "type": "string",
+                "description": "Descriptive alternative text. Required for anything not decorative."
+              },
+              "width": {
+                "type": "integer",
+                "description": "Intrinsic width in pixels."
+              },
+              "height": {
+                "type": "integer",
+                "description": "Intrinsic height in pixels."
+              }
+            },
+            "required": [
+              "src",
+              "alt"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "description": "Shown when there is no logo image. Defaults to the business name."
+          },
+          "url": {
+            "type": "string",
+            "description": "Where the logo links.",
+            "default": "/"
+          },
+          "height": {
+            "type": "integer",
+            "description": "Rendered height in pixels.",
+            "minimum": 16,
+            "maximum": 120,
+            "default": 34
+          }
+        }
+      }
+    },
+    {
+      "id": "menu",
+      "label": "Menu",
+      "category": "navigation",
+      "group": "navigation",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "menuId": {
+            "type": "string",
+            "description": "Which menu to show, by id. Menus are managed on the Menus screen."
+          },
+          "layout": {
+            "type": "string",
+            "description": "How the menu draws. \"mega\" turns each top-level item with children into a full-width panel whose second level becomes the columns — the standard dealer mega nav. It needs a three-level menu: item > column heading > links.",
+            "enum": [
+              "horizontal",
+              "vertical",
+              "mega"
+            ],
+            "default": "horizontal"
+          },
+          "collapseOnMobile": {
+            "type": "boolean",
+            "description": "Collapse behind a menu button on small screens."
+          },
+          "align": {
+            "type": "string",
+            "description": "Alignment within its column.",
+            "enum": [
+              "start",
+              "center",
+              "end"
+            ],
+            "default": "start"
+          },
+          "depth": {
+            "type": "integer",
+            "description": "How many levels to draw. 1 hides submenus.",
+            "minimum": 1,
+            "maximum": 3,
+            "default": 2
+          }
+        },
+        "required": [
+          "menuId"
+        ]
+      }
+    },
+    {
+      "id": "hero",
+      "label": "Hero (full-bleed)",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "eyebrow": {
+            "type": "string",
+            "description": "Small label above the headline."
+          },
+          "headline": {
+            "type": "string",
+            "description": "The page promise, one line."
+          },
+          "subhead": {
+            "type": "string",
+            "description": "Two sentences at most."
+          },
+          "ctas": {
+            "type": "array",
+            "description": "Calls to action, in order.",
+            "items": {
+              "type": "object",
+              "description": "A call to action. Prefer `ctaId` referencing the dealer's Buttons library over an inline label/url — a library CTA keeps its label, destination and tagging consistent everywhere it appears.",
+              "properties": {
+                "ctaId": {
+                  "type": "string",
+                  "description": "Id of an entry in site/buttons.json."
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Inline label. Overrides the library label when both are set."
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Inline destination. Overrides the library destination."
+                },
+                "style": {
+                  "type": "string",
+                  "description": "Visual variant.",
+                  "enum": [
+                    "primary",
+                    "secondary",
+                    "link"
+                  ]
+                },
+                "intent": {
+                  "type": "string",
+                  "description": "Analytics intent, e.g. \"get-quote\". Defaults to the library value."
+                }
+              }
+            },
+            "maxItems": 3
+          },
+          "image": {
+            "type": "object",
+            "description": "An uploaded image, referenced by public URL. Never a base64 data URI.",
+            "properties": {
+              "src": {
+                "type": "string",
+                "description": "Public image URL from the media library."
+              },
+              "alt": {
+                "type": "string",
+                "description": "Descriptive alternative text. Required for anything not decorative."
+              },
+              "width": {
+                "type": "integer",
+                "description": "Intrinsic width in pixels."
+              },
+              "height": {
+                "type": "integer",
+                "description": "Intrinsic height in pixels."
+              }
+            },
+            "required": [
+              "src",
+              "alt"
+            ]
+          },
+          "showSearch": {
+            "type": "boolean",
+            "description": "Show the inventory search bar."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          }
+        },
+        "required": [
+          "headline"
+        ]
+      }
+    },
+    {
+      "id": "splitHero",
+      "label": "Split hero (photo)",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "badge": {
+            "type": "string",
+            "description": "Short credibility line, e.g. \"Manufacturer-direct since 1987\"."
+          },
+          "headline": {
+            "type": "string",
+            "description": "The page promise, one line."
+          },
+          "subhead": {
+            "type": "string",
+            "description": "Two sentences at most."
+          },
+          "ctas": {
+            "type": "array",
+            "description": "Calls to action, in order.",
+            "items": {
+              "type": "object",
+              "description": "A call to action. Prefer `ctaId` referencing the dealer's Buttons library over an inline label/url — a library CTA keeps its label, destination and tagging consistent everywhere it appears.",
+              "properties": {
+                "ctaId": {
+                  "type": "string",
+                  "description": "Id of an entry in site/buttons.json."
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Inline label. Overrides the library label when both are set."
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Inline destination. Overrides the library destination."
+                },
+                "style": {
+                  "type": "string",
+                  "description": "Visual variant.",
+                  "enum": [
+                    "primary",
+                    "secondary",
+                    "link"
+                  ]
+                },
+                "intent": {
+                  "type": "string",
+                  "description": "Analytics intent, e.g. \"get-quote\". Defaults to the library value."
+                }
+              }
+            },
+            "maxItems": 3
+          },
+          "stats": {
+            "type": "array",
+            "description": "Short proof points. Keep values terse — \"39 yrs\", \"12k+\".",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "description": "The figure."
+                },
+                "label": {
+                  "type": "string",
+                  "description": "What it counts."
+                }
+              },
+              "required": [
+                "value",
+                "label"
+              ]
+            }
+          },
+          "image": {
+            "type": "object",
+            "description": "An uploaded image, referenced by public URL. Never a base64 data URI.",
+            "properties": {
+              "src": {
+                "type": "string",
+                "description": "Public image URL from the media library."
+              },
+              "alt": {
+                "type": "string",
+                "description": "Descriptive alternative text. Required for anything not decorative."
+              },
+              "width": {
+                "type": "integer",
+                "description": "Intrinsic width in pixels."
+              },
+              "height": {
+                "type": "integer",
+                "description": "Intrinsic height in pixels."
+              }
+            },
+            "required": [
+              "src",
+              "alt"
+            ]
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          }
+        },
+        "required": [
+          "headline"
+        ]
+      }
+    },
+    {
+      "id": "iconGrid",
+      "label": "Quick links",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "Optional heading."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "Shortcut title."
+                },
+                "desc": {
+                  "type": "string",
+                  "description": "One sentence."
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Destination."
+                }
+              },
+              "required": [
+                "label"
+              ]
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      }
+    },
+    {
+      "id": "categoryGrid",
+      "label": "Category grid",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "Optional heading."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "cta": {
+            "type": "object",
+            "description": "A call to action. Prefer `ctaId` referencing the dealer's Buttons library over an inline label/url — a library CTA keeps its label, destination and tagging consistent everywhere it appears.",
+            "properties": {
+              "ctaId": {
+                "type": "string",
+                "description": "Id of an entry in site/buttons.json."
+              },
+              "label": {
+                "type": "string",
+                "description": "Inline label. Overrides the library label when both are set."
+              },
+              "url": {
+                "type": "string",
+                "description": "Inline destination. Overrides the library destination."
+              },
+              "style": {
+                "type": "string",
+                "description": "Visual variant.",
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "link"
+                ]
+              },
+              "intent": {
+                "type": "string",
+                "description": "Analytics intent, e.g. \"get-quote\". Defaults to the library value."
+              }
+            }
+          },
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "Card title."
+                },
+                "meta": {
+                  "type": "string",
+                  "description": "Second line, e.g. \"New · $24,900\"."
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Destination."
+                },
+                "image": {
+                  "type": "object",
+                  "description": "An uploaded image, referenced by public URL. Never a base64 data URI.",
+                  "properties": {
+                    "src": {
+                      "type": "string",
+                      "description": "Public image URL from the media library."
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Descriptive alternative text. Required for anything not decorative."
+                    },
+                    "width": {
+                      "type": "integer",
+                      "description": "Intrinsic width in pixels."
+                    },
+                    "height": {
+                      "type": "integer",
+                      "description": "Intrinsic height in pixels."
+                    }
+                  },
+                  "required": [
+                    "src",
+                    "alt"
+                  ]
+                }
+              },
+              "required": [
+                "label"
+              ]
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      }
+    },
+    {
+      "id": "statBand",
+      "label": "Stat band",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "The claim."
+          },
+          "body": {
+            "type": "string",
+            "description": "Two sentences supporting it."
+          },
+          "ctas": {
+            "type": "array",
+            "description": "Calls to action, in order.",
+            "items": {
+              "type": "object",
+              "description": "A call to action. Prefer `ctaId` referencing the dealer's Buttons library over an inline label/url — a library CTA keeps its label, destination and tagging consistent everywhere it appears.",
+              "properties": {
+                "ctaId": {
+                  "type": "string",
+                  "description": "Id of an entry in site/buttons.json."
+                },
+                "label": {
+                  "type": "string",
+                  "description": "Inline label. Overrides the library label when both are set."
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Inline destination. Overrides the library destination."
+                },
+                "style": {
+                  "type": "string",
+                  "description": "Visual variant.",
+                  "enum": [
+                    "primary",
+                    "secondary",
+                    "link"
+                  ]
+                },
+                "intent": {
+                  "type": "string",
+                  "description": "Analytics intent, e.g. \"get-quote\". Defaults to the library value."
+                }
+              }
+            },
+            "maxItems": 3
+          },
+          "stats": {
+            "type": "array",
+            "description": "Short proof points. Keep values terse — \"39 yrs\", \"12k+\".",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "description": "The figure."
+                },
+                "label": {
+                  "type": "string",
+                  "description": "What it counts."
+                }
+              },
+              "required": [
+                "value",
+                "label"
+              ]
+            }
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          }
+        },
+        "required": [
+          "stats"
+        ]
+      }
+    },
+    {
+      "id": "serviceGrid",
+      "label": "Service grid",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "Section heading."
+          },
+          "body": {
+            "type": "string",
+            "description": "One or two sentences."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "items": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string",
+                  "description": "Service name."
+                },
+                "desc": {
+                  "type": "string",
+                  "description": "What it covers."
+                },
+                "cta": {
+                  "type": "object",
+                  "description": "A call to action. Prefer `ctaId` referencing the dealer's Buttons library over an inline label/url — a library CTA keeps its label, destination and tagging consistent everywhere it appears.",
+                  "properties": {
+                    "ctaId": {
+                      "type": "string",
+                      "description": "Id of an entry in site/buttons.json."
+                    },
+                    "label": {
+                      "type": "string",
+                      "description": "Inline label. Overrides the library label when both are set."
+                    },
+                    "url": {
+                      "type": "string",
+                      "description": "Inline destination. Overrides the library destination."
+                    },
+                    "style": {
+                      "type": "string",
+                      "description": "Visual variant.",
+                      "enum": [
+                        "primary",
+                        "secondary",
+                        "link"
+                      ]
+                    },
+                    "intent": {
+                      "type": "string",
+                      "description": "Analytics intent, e.g. \"get-quote\". Defaults to the library value."
+                    }
+                  }
+                }
+              },
+              "required": [
+                "label"
+              ]
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      }
+    },
+    {
+      "id": "testimonials",
+      "label": "Testimonials",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "Section heading."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "items": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "quote": {
+                  "type": "string",
+                  "description": "The customer's words. Never fabricate a review."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Who said it."
+                },
+                "role": {
+                  "type": "string",
+                  "description": "Their context, e.g. \"Owner-operator\"."
+                },
+                "rating": {
+                  "type": "integer",
+                  "description": "Stars out of five.",
+                  "minimum": 1,
+                  "maximum": 5
+                }
+              },
+              "required": [
+                "quote",
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      }
+    },
+    {
+      "id": "logoStrip",
+      "label": "Logo strip",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "Optional label, e.g. \"Brands we carry\"."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "logos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Brand name."
+                },
+                "image": {
+                  "type": "object",
+                  "description": "An uploaded image, referenced by public URL. Never a base64 data URI.",
+                  "properties": {
+                    "src": {
+                      "type": "string",
+                      "description": "Public image URL from the media library."
+                    },
+                    "alt": {
+                      "type": "string",
+                      "description": "Descriptive alternative text. Required for anything not decorative."
+                    },
+                    "width": {
+                      "type": "integer",
+                      "description": "Intrinsic width in pixels."
+                    },
+                    "height": {
+                      "type": "integer",
+                      "description": "Intrinsic height in pixels."
+                    }
+                  },
+                  "required": [
+                    "src",
+                    "alt"
+                  ]
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Brand page."
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "logos"
+        ]
+      }
+    },
+    {
+      "id": "postsList",
+      "label": "Latest posts",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "Optional heading, e.g. \"News & insights\"."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "count": {
+            "type": "integer",
+            "description": "How many recent posts to show.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 3
+          },
+          "showDates": {
+            "type": "boolean",
+            "description": "Show each post’s date.",
+            "default": true
+          },
+          "cta": {
+            "type": "object",
+            "description": "A call to action. Prefer `ctaId` referencing the dealer's Buttons library over an inline label/url — a library CTA keeps its label, destination and tagging consistent everywhere it appears.",
+            "properties": {
+              "ctaId": {
+                "type": "string",
+                "description": "Id of an entry in site/buttons.json."
+              },
+              "label": {
+                "type": "string",
+                "description": "Inline label. Overrides the library label when both are set."
+              },
+              "url": {
+                "type": "string",
+                "description": "Inline destination. Overrides the library destination."
+              },
+              "style": {
+                "type": "string",
+                "description": "Visual variant.",
+                "enum": [
+                  "primary",
+                  "secondary",
+                  "link"
+                ]
+              },
+              "intent": {
+                "type": "string",
+                "description": "Analytics intent, e.g. \"get-quote\". Defaults to the library value."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "locationsMap",
+      "label": "Locations + map",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "heading": {
+            "type": "string",
+            "description": "Section heading."
+          },
+          "mapHeading": {
+            "type": "string",
+            "description": "Heading over the map column."
+          },
+          "headingLevel": {
+            "type": "integer",
+            "description": "Heading level for this block. Keep one h1 per page.",
+            "minimum": 1,
+            "maximum": 6,
+            "default": 2
+          },
+          "useLiveLocations": {
+            "type": "boolean",
+            "description": "Pull locations from the dealer's Locations module instead of the list below. Prefer this — a hand-typed list goes stale the day a location is added."
+          },
+          "locations": {
+            "type": "array",
+            "description": "Only used when useLiveLocations is false.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "city": {
+                  "type": "string",
+                  "description": "City and region."
+                },
+                "services": {
+                  "type": "string",
+                  "description": "What the site offers, e.g. \"Sales · Service · Parts\"."
+                },
+                "url": {
+                  "type": "string",
+                  "description": "Location page."
+                }
+              },
+              "required": [
+                "city"
+              ]
+            }
+          },
+          "testimonial": {
+            "type": "object",
+            "properties": {
+              "quote": {
+                "type": "string",
+                "description": "Quote."
+              },
+              "name": {
+                "type": "string",
+                "description": "Name."
+              },
+              "role": {
+                "type": "string",
+                "description": "Role."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "footer",
+      "label": "Storefront footer",
+      "category": "prebuilt",
+      "group": "prebuilt",
+      "autoTagged": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "tagline": {
+            "type": "string",
+            "description": "One line about the business."
+          },
+          "legal": {
+            "type": "string",
+            "description": "Copyright / legal line."
+          },
+          "columns": {
+            "type": "array",
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "properties": {
+                "heading": {
+                  "type": "string",
+                  "description": "Column heading."
+                },
+                "links": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "label": {
+                        "type": "string",
+                        "description": "Link text."
+                      },
+                      "url": {
+                        "type": "string",
+                        "description": "Destination."
+                      }
+                    },
+                    "required": [
+                      "label",
+                      "url"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "heading",
+                "links"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

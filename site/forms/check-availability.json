@@ -1,0 +1,45 @@
+{
+  "id": "check-availability",
+  "name": "Check availability",
+  "status": "live",
+  "system": true,
+  "pdpContext": true,
+  "surfaces": ["pdp", "partsPdp", "page"],
+  "intent": "check-availability",
+  "submitLabel": "Check availability",
+  "successMessage": "Thanks — we will confirm availability shortly.",
+  "consent": {
+    "enabled": true,
+    "required": true,
+    "text": "I agree to be contacted about this enquiry by phone, text or email."
+  },
+  "fields": [
+    { "id": "ca-name", "type": "full_name", "label": "Full name", "required": true },
+    { "id": "ca-email", "type": "email", "label": "Email", "required": true },
+    { "id": "ca-phone", "type": "phone", "label": "Phone", "required": false },
+    {
+      "id": "ca-when",
+      "type": "dropdown",
+      "label": "When do you need it?",
+      "required": false,
+      "options": [
+        { "value": "asap", "label": "As soon as possible" },
+        { "value": "30", "label": "Within 30 days" },
+        { "value": "90", "label": "Within 90 days" },
+        { "value": "browsing", "label": "Just browsing" }
+      ]
+    },
+    { "id": "ca-message", "type": "paragraph", "label": "Anything we should know?", "required": false }
+  ],
+  "notifications": [
+    {
+      "id": "ca-default",
+      "name": "Default",
+      "logic": "AND",
+      "rules": [],
+      "targetType": "role",
+      "roleId": "salesperson",
+      "scopeMode": "dynamic"
+    }
+  ]
+}

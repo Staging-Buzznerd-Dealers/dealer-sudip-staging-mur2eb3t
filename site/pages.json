@@ -1,0 +1,21 @@
+[
+  {
+    "slug": "home",
+    "title": "Home",
+    "description": "New and used trucks, service and parts from a dealer you can trust.",
+    "path": "/",
+    "out": "index.html",
+    "dir": "home",
+    "status": "published",
+    "seo": {
+      "ogImage": null,
+      "noindex": false
+    },
+    "templates": {
+      "header": null,
+      "footer": null,
+      "utilityNav": null
+    },
+    "pageType": "Home"
+  }
+]

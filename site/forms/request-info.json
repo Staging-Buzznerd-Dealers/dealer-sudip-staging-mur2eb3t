@@ -1,0 +1,68 @@
+{
+  "id": "request-info",
+  "name": "Request info",
+  "status": "live",
+  "system": true,
+  "pdpContext": true,
+  "surfaces": ["pdp", "partsPdp", "page", "blog"],
+  "intent": "request-info",
+  "submitLabel": "Send request",
+  "successMessage": "Thanks — someone from the team will be in touch.",
+  "consent": {
+    "enabled": true,
+    "required": true,
+    "text": "I agree to be contacted about this enquiry by phone, text or email."
+  },
+  "fields": [
+    { "id": "ri-first", "type": "first_name", "label": "First name", "required": true },
+    { "id": "ri-last", "type": "last_name", "label": "Last name", "required": true },
+    { "id": "ri-email", "type": "email", "label": "Email", "required": true },
+    { "id": "ri-phone", "type": "phone", "label": "Phone", "required": false },
+    {
+      "id": "ri-topic",
+      "type": "radio",
+      "label": "What is this about?",
+      "required": true,
+      "options": [
+        { "value": "sales", "label": "Sales" },
+        { "value": "service", "label": "Service" },
+        { "value": "parts", "label": "Parts" }
+      ]
+    },
+    {
+      "id": "ri-unit",
+      "type": "single_line",
+      "label": "Which unit or part?",
+      "required": false,
+      "logic": {
+        "logic": "OR",
+        "action": "show",
+        "rules": [
+          { "fieldId": "ri-topic", "operator": "is", "value": "parts" },
+          { "fieldId": "ri-topic", "operator": "is", "value": "service" }
+        ]
+      }
+    },
+    { "id": "ri-message", "type": "paragraph", "label": "Message", "required": false }
+  ],
+  "notifications": [
+    {
+      "id": "ri-sales",
+      "name": "Sales enquiries",
+      "logic": "AND",
+      "rules": [{ "fieldId": "ri-topic", "operator": "is", "value": "sales" }],
+      "targetType": "role",
+      "roleId": "salesperson",
+      "scopeMode": "dynamic"
+    },
+    {
+      "id": "ri-service",
+      "name": "Service enquiries",
+      "logic": "AND",
+      "rules": [{ "fieldId": "ri-topic", "operator": "is", "value": "service" }],
+      "targetType": "role",
+      "roleId": "service-advisor",
+      "scopeMode": "dynamic"
+    }
+  ]
+}

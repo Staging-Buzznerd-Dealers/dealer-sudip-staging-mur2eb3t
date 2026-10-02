@@ -1,0 +1,44 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/store",
+      "destination": "https://REPLACE_STOREFRONT_ORIGIN/store"
+    },
+    {
+      "source": "/store/",
+      "destination": "https://REPLACE_STOREFRONT_ORIGIN/store/"
+    },
+    {
+      "source": "/store/:path*",
+      "destination": "https://REPLACE_STOREFRONT_ORIGIN/store/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/partials/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "rental-request",
+  "name": "Request reservation",
+  "status": "live",
+  "system": true,
+  "pdpContext": true,
+  "surfaces": ["pdp", "page"],
+  "intent": "rental-request",
+  "submitLabel": "Request these dates",
+  "successMessage": "Thanks — the branch will confirm availability and the rate. Nothing is booked until they do.",
+  "consent": {
+    "enabled": true,
+    "required": true,
+    "text": "I agree to be contacted about this rental by phone, text or email."
+  },
+  "fields": [
+    { "id": "rr-name", "type": "full_name", "label": "Full name", "required": true, "width": "half" },
+    { "id": "rr-company", "type": "single_line", "label": "Company", "required": false, "width": "half" },
+    { "id": "rr-email", "type": "email", "label": "Email", "required": true, "width": "half" },
+    { "id": "rr-phone", "type": "phone", "label": "Phone", "required": true, "width": "half" },
+    { "id": "rr-from", "type": "date", "label": "From", "required": true, "width": "half" },
+    { "id": "rr-to", "type": "date", "label": "To", "required": true, "width": "half" },
+    {
+      "id": "rr-handover",
+      "type": "radio",
+      "label": "Pickup or delivery?",
+      "required": false,
+      "options": [
+        { "value": "pickup", "label": "I will pick it up" },
+        { "value": "delivery", "label": "Deliver it to my site" }
+      ]
+    },
+    {
+      "id": "rr-address",
+      "type": "single_line",
+      "label": "Delivery address",
+      "required": true,
+      "logic": {
+        "logic": "AND",
+        "action": "show",
+        "rules": [{ "fieldId": "rr-handover", "operator": "is", "value": "delivery" }]
+      }
+    },
+    { "id": "rr-message", "type": "paragraph", "label": "Anything else?", "required": false }
+  ],
+  "notifications": [
+    {
+      "id": "rr-default",
+      "name": "Default",
+      "logic": "AND",
+      "rules": [],
+      "targetType": "role",
+      "roleId": "salesperson",
+      "scopeMode": "dynamic"
+    }
+  ]
+}

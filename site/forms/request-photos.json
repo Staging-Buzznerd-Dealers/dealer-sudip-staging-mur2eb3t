@@ -1,0 +1,48 @@
+{
+  "id": "request-photos",
+  "name": "Request more photos",
+  "status": "live",
+  "system": true,
+  "pdpContext": true,
+  "surfaces": ["pdp", "partsPdp"],
+  "intent": "request-photos",
+  "submitLabel": "Send me photos",
+  "successMessage": "Thanks — we will send the photos to you shortly.",
+  "consent": {
+    "enabled": true,
+    "required": true,
+    "text": "I agree to be contacted about this listing by phone, text or email."
+  },
+  "fields": [
+    { "id": "rp-name", "type": "full_name", "label": "Full name", "required": true },
+    { "id": "rp-email", "type": "email", "label": "Email", "required": true, "width": "half" },
+    { "id": "rp-phone", "type": "phone", "label": "Phone", "required": false, "width": "half" },
+    {
+      "id": "rp-views",
+      "type": "checkboxes",
+      "label": "What would you like to see?",
+      "required": false,
+      "options": [
+        { "value": "walkaround", "label": "A walkaround video" },
+        { "value": "interior", "label": "Interior or cab" },
+        { "value": "engine", "label": "Engine" },
+        { "value": "undercarriage", "label": "Undercarriage and frame" },
+        { "value": "tires-brakes", "label": "Tires and brakes" },
+        { "value": "damage", "label": "Damage or wear" },
+        { "value": "records", "label": "Service records" }
+      ]
+    },
+    { "id": "rp-message", "type": "paragraph", "label": "Anything specific?", "required": false }
+  ],
+  "notifications": [
+    {
+      "id": "rp-default",
+      "name": "Default",
+      "logic": "AND",
+      "rules": [],
+      "targetType": "role",
+      "roleId": "salesperson",
+      "scopeMode": "dynamic"
+    }
+  ]
+}

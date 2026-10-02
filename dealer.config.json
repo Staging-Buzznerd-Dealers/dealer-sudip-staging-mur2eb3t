@@ -1,0 +1,43 @@
+{
+  "$schema": "./dealer.config.schema.json",
+  "contractVersion": "5.0.0",
+  "name": "BuzzNerd Dealer",
+  "shortName": "BuzzNerd",
+  "channelToken": "REPLACE_CHANNEL_TOKEN",
+  "domain": "REPLACE_CHANNEL_TOKEN.buzznerd.com",
+  "url": "https://REPLACE_CHANNEL_TOKEN.buzznerd.com",
+  "storefrontOrigin": "https://REPLACE_STOREFRONT_ORIGIN",
+  "storefrontPrefix": "store",
+  "logo": "/logo.svg",
+  "favicon": "/favicon.svg",
+  "analytics": {
+    "loaderUrl": null,
+    "loaderVersion": null
+  },
+  "business": {
+    "type": "AutoDealer",
+    "legalName": "BuzzNerd Trucks LLC",
+    "phone": "+1-800-555-0100",
+    "email": "sales@example.com",
+    "streetAddress": "1234 Highway Dr",
+    "addressLocality": "Salt Lake City",
+    "addressRegion": "UT",
+    "postalCode": "84101",
+    "addressCountry": "US",
+    "latitude": 40.7608,
+    "longitude": -111.891,
+    "priceRange": "$$",
+    "openingHours": [
+      "Mo-Fr 08:00-18:00",
+      "Sa 09:00-16:00"
+    ]
+  },
+  "seo": {
+    "defaultTitle": "BuzzNerd Dealer | Trucks, Parts & Service",
+    "titleTemplate": "%s | BuzzNerd Dealer",
+    "defaultDescription": "New and used trucks, expert service, genuine parts, financing and leasing from a dealer you can trust.",
+    "ogImage": "/og-default.jpg",
+    "locale": "en_US",
+    "themeColor": "#111c3a"
+  }
+}

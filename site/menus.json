@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "menus": [
+    {
+      "id": "main",
+      "name": "Main menu",
+      "items": [
+        { "id": "home", "label": "Home", "type": "page", "ref": "home" },
+        { "id": "inventory", "label": "Inventory", "type": "inventory", "ref": "inventory" },
+        {
+          "id": "about",
+          "label": "About",
+          "type": "url",
+          "url": "/about",
+          "children": [
+            { "id": "about-team", "label": "Our team", "type": "url", "url": "/about#team" },
+            { "id": "about-history", "label": "History", "type": "url", "url": "/about#history" }
+          ]
+        },
+        { "id": "contact", "label": "Contact", "type": "url", "url": "/contact" }
+      ]
+    },
+    {
+      "id": "footer",
+      "name": "Footer menu",
+      "items": [
+        { "id": "f-inventory", "label": "Inventory", "type": "inventory", "ref": "inventory" },
+        { "id": "f-about", "label": "About", "type": "url", "url": "/about" },
+        { "id": "f-contact", "label": "Contact", "type": "url", "url": "/contact" }
+      ]
+    },
+    {
+      "id": "legal",
+      "name": "Legal",
+      "items": [
+        { "id": "privacy", "label": "Privacy", "type": "url", "url": "/privacy" },
+        { "id": "terms", "label": "Terms", "type": "url", "url": "/terms" }
+      ]
+    }
+  ]
+}

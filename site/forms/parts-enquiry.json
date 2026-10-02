@@ -1,0 +1,38 @@
+{
+  "id": "parts-enquiry",
+  "name": "Parts enquiry",
+  "status": "live",
+  "system": true,
+  "pdpContext": true,
+  "surfaces": ["partsPdp", "page"],
+  "intent": "parts-enquiry",
+  "submitLabel": "Ask the parts desk",
+  "successMessage": "Thanks — the parts desk will confirm stock and fitment with you shortly.",
+  "consent": {
+    "enabled": true,
+    "required": true,
+    "text": "I agree to be contacted about this enquiry by phone, text or email."
+  },
+  "fields": [
+    { "id": "pe-name", "type": "full_name", "label": "Full name", "required": true },
+    { "id": "pe-email", "type": "email", "label": "Email", "required": true, "width": "half" },
+    { "id": "pe-phone", "type": "phone", "label": "Phone", "required": false, "width": "half" },
+    { "id": "pe-qty", "type": "number", "label": "How many?", "required": false },
+    { "id": "pe-year", "name": "vehicleYear", "type": "number", "label": "Vehicle year", "required": false, "width": "half" },
+    { "id": "pe-make", "name": "vehicleMake", "type": "single_line", "label": "Vehicle make", "required": false, "width": "half" },
+    { "id": "pe-model", "name": "vehicleModel", "type": "single_line", "label": "Vehicle model", "required": false, "width": "half" },
+    { "id": "pe-vin", "type": "single_line", "label": "VIN", "required": false, "width": "half" },
+    { "id": "pe-message", "type": "paragraph", "label": "Anything else?", "required": false }
+  ],
+  "notifications": [
+    {
+      "id": "pe-default",
+      "name": "Default",
+      "logic": "AND",
+      "rules": [],
+      "targetType": "role",
+      "roleId": "parts-manager",
+      "scopeMode": "dynamic"
+    }
+  ]
+}
