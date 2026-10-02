@@ -6,15 +6,19 @@
   "rewrites": [
     {
       "source": "/store",
-      "destination": "https://REPLACE_STOREFRONT_ORIGIN/store"
+      "destination": "https://sudip-staging.ai4dealerships.com/store"
     },
     {
       "source": "/store/",
-      "destination": "https://REPLACE_STOREFRONT_ORIGIN/store/"
+      "destination": "https://sudip-staging.ai4dealerships.com/store/"
+    },
+    {
+      "source": "/store/:path*/",
+      "destination": "https://sudip-staging.ai4dealerships.com/store/:path*/"
     },
     {
       "source": "/store/:path*",
-      "destination": "https://REPLACE_STOREFRONT_ORIGIN/store/:path*"
+      "destination": "https://sudip-staging.ai4dealerships.com/store/:path*"
     }
   ],
   "headers": [
